@@ -31,12 +31,169 @@
     <meta name="msapplication-TileImage" content="icons/favicon/ms-icon-144x144.png">
     <meta name="theme-color" content="#ffffff">
 
-
     <link rel="stylesheet" href="css/style.min.css">
 </head>
 
 <body>
+    <main>
+        <section class="calc">
+            <h1 class="title calc__title">Калькулятор стоимости ремонта</h1>
+            <div class="calc__wrapper">
 
+                <div class="calculator">
+                    <div class="calculator__wrapper-tabs">
+                        <button class="calculator__tab-square"></button>
+                        <button class="calculator__tab-works"></button>
+                    </div>
+                    <div class="calculator__content">
+                        <div class="calculator__header">
+                            <div class="calculator__item">
+                                <label class="calculator__item-text">Высота потолка в квартире:
+                                    <input type="text" class="calculator__item-input">
+                                    <span class="calculator__item-symb">м</span>
+                                </label>
+                            </div>
+                            <p class="calculator__rooms-text">Площадь отдельных комнат:</p>
+                        </div>
+                        <div class="calculator__main">
+                            <div class="calculator__item">
+                                <label class="calculator__item-text">Гостинная:
+                                    <input type="text" class="calculator__item-input">
+                                    <span class="calculator__item-symb">м2</span>
+                                </label>
+                            </div>
+                            <div class="calculator__item">
+                                <label class="calculator__item-text">Коридор №2:
+                                    <input type="text" class="calculator__item-input">
+                                    <span class="calculator__item-symb">м2</span>
+                                </label>
+                            </div>
+                            <div class="calculator__item">
+                                <label class="calculator__item-text">Гостинная с кухней (студия):
+                                    <input type="text" class="calculator__item-input">
+                                    <span class="calculator__item-symb">м2</span>
+                                </label>
+                            </div>
+                            <div class="calculator__item">
+                                <label class="calculator__item-text">Кухня:
+                                    <input type="text" class="calculator__item-input">
+                                    <span class="calculator__item-symb">м2</span>
+                                </label>
+                            </div>
+                            <div class="calculator__item">
+                                <label class="calculator__item-text">Спальня №1
+                                    <input type="text" class="calculator__item-input">
+                                    <span class="calculator__item-symb">м2</span>
+                                </label>
+                            </div>
+                            <div class="calculator__item">
+                                <label class="calculator__item-text">Кладовая
+                                    <input type="text" class="calculator__item-input">
+                                    <span class="calculator__item-symb">м2</span>
+                                </label>
+                            </div>
+                            <div class="calculator__item">
+                                <label class="calculator__item-text">Спальня №2
+                                    <input type="text" class="calculator__item-input">
+                                    <span class="calculator__item-symb">м2</span>
+                                </label>
+                            </div>
+                            <div class="calculator__item">
+                                <label class="calculator__item-text">Балкон №1
+                                    <input type="text" class="calculator__item-input">
+                                    <span class="calculator__item-symb">м2</span>
+                                </label>
+                            </div>
+
+                            <div class="calculator__item">
+                                <label class="calculator__item-text">Детская №1
+                                    <input type="text" class="calculator__item-input">
+                                    <span class="calculator__item-symb">м2</span>
+                                </label>
+                            </div>
+                            <div class="calculator__item">
+                                <label class="calculator__item-text">Балкон №2
+                                    <input type="text" class="calculator__item-input">
+                                    <span class="calculator__item-symb">м2</span>
+                                </label>
+                            </div>
+                            <div class="calculator__item">
+                                <label class="calculator__item-text">Детская №2
+                                    <input type="text" class="calculator__item-input">
+                                    <span class="calculator__item-symb">м2</span>
+                                </label>
+                            </div>
+                            <div class="calculator__item">
+                                <label class="calculator__item-text">Лоджия
+                                    <input type="text" class="calculator__item-input">
+                                    <span class="calculator__item-symb">м2</span>
+                                </label>
+                            </div>
+                            <div class="calculator__item">
+                                <label class="calculator__item-text">Кабинет
+                                    <input type="text" class="calculator__item-input">
+                                    <span class="calculator__item-symb">м2</span>
+                                </label>
+                            </div>
+                            <div class="calculator__item">
+                                <label class="calculator__item-text">Санузел (ванная или душ)
+                                    <input type="text" class="calculator__item-input">
+                                    <span class="calculator__item-symb">м2</span>
+                                </label>
+                            </div>
+                            <div class="calculator__item">
+                                <label class="calculator__item-text">Коридор №1
+                                    <input type="text" class="calculator__item-input">
+                                    <span class="calculator__item-symb">м2</span>
+                                </label>
+                            </div>
+                            <div class="calculator__item">
+                                <label class="calculator__item-text">Санузел (туалет)
+                                    <input type="text" class="calculator__item-input">
+                                    <span class="calculator__item-symb">м2</span>
+                                </label>
+                            </div>
+                        </div>
+                        <div class="calculator__footer">
+                            <p class="calculator__notes">Примечания: </p>
+                            <ul class="calculator__list">
+                                <li class="calculator__list-item">устанавливайте площадь помещений там, где необходим
+                                    ремонт</li>
+                                <li class="calculator__list-item">если есть дополнительные комнаты, например, Спальня
+                                    №3, то добавляйте их площадь к существующим в калькуляторе</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="calculator__sum">
+                    <div class="calculator__sum-info">
+                        <div class="calculator__sum-inner">
+                            <span class="calculator__amount calculator__amount-first">0</span>
+                            <span class="calculator__currency calculator__currency-first">грн</span>
+                        </div>
+                        <p class="calculator__sum-text">
+                            Примерная
+                            общая стоимость работ
+                        </p>
+                    </div>
+                    <div class="calculator__sum-info">
+                        <div class="calculator__sum-inner">
+                            <span class="calculator__amount calculator__amount-first">0</span>
+                            <span class="calculator__currency calculator__currency-first">$</span>
+                        </div>
+                        <p class="calculator__sum-text">
+                            Сумма в долларах США
+                            по текущему курсу
+                        </p>
+                    </div>
+                </div>
+                <button class="button">
+                    Войти как администратор
+                </button>
+            </div>
+        </section>
+    </main>
     <script src="js/script.js"></script>
 </body>
 
