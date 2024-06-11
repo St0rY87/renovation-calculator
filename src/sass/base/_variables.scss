@@ -1,0 +1,11 @@
+:root {
+  --color-main: #fff;
+  --color-accent: #ff5f13;
+  --color-second: rgba(255, 254, 254, 0.5);
+  --color-backg: linear-gradient(
+    180deg,
+    rgba(167, 167, 172, 0.13) 0%,
+    rgba(29, 29, 53, 0.9) 100%
+  );
+  --box-shadow: 0px 0px 30px 5px rgba(0, 0, 0, 0.5);
+}
