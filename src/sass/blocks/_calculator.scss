@@ -28,6 +28,7 @@
     display: flex;
   }
   &__tab {
+    font-family: "Helvetica Neue", sans-serif;
     background: rgba(6, 6, 6, 0.35);
     color: var(--color-main);
     font-size: 18px;
@@ -56,6 +57,7 @@
     width: 405px;
   }
   &__item-text {
+    font-family: "Helvetica Neue", sans-serif;
     color: var(--color-main);
     font-size: 18px;
     font-weight: 400;
@@ -117,9 +119,13 @@
     font-size: 18px;
     font-weight: 400;
     line-height: normal;
+    line-height: 1.2;
   }
   &__list {
     color: var(--color-main);
+    &-item::marker {
+      color: var(--color-accent);
+    }
   }
 
   &__sum {
