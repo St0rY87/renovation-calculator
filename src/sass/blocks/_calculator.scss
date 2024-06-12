@@ -6,20 +6,22 @@
   padding-top: 120px;
   padding-bottom: 210px;
   padding-inline: 105px;
-  min-width: 100vw;
   min-height: 100vh;
   &__accent-word {
     border-bottom: 4px solid var(--color-accent);
   }
   &__wrapper {
     display: flex;
-    flex-wrap: wrap;
     justify-content: space-between;
     align-items: flex-start;
     column-gap: 50px;
   }
   &__title {
     margin-bottom: 50px;
+  }
+
+  &__inner {
+    flex-shrink: 3;
   }
 }
 
@@ -50,8 +52,6 @@
     padding-bottom: 40px;
     max-width: 1000px;
   }
-  &__content {
-  }
 
   &__item {
     width: 405px;
@@ -62,9 +62,11 @@
     font-size: 18px;
     font-weight: 400;
     line-height: normal;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+    display: grid;
+    grid-template-columns: 2.5fr 1fr;
+  }
+  &__item-inner {
+    margin-left: auto;
   }
   &__item-input {
     width: 66px;
@@ -147,6 +149,7 @@
     width: 450px;
     padding-top: 100px;
     padding-bottom: 115px;
+    padding-inline: 15px;
     &-info {
       display: flex;
       flex-direction: column;
@@ -162,6 +165,128 @@
       font-size: 24px;
       max-width: 287px;
       text-align: center;
+    }
+  }
+}
+
+@media (max-width: 1640px) {
+  .calc {
+    padding-top: 60px;
+    padding-bottom: 60px;
+    padding-inline: 30px;
+    &__wrapper {
+      justify-content: center;
+    }
+    &__title {
+      text-align: center;
+    }
+  }
+  .calculator {
+    &__content {
+      justify-content: center;
+    }
+    &__item {
+      margin: 0 auto;
+    }
+    &__wrapper {
+      max-width: 520px;
+    }
+
+    &__sum {
+      position: sticky;
+      top: 85px;
+    }
+    &__tab {
+      width: 100%;
+    }
+  }
+}
+
+@media (max-width: 1100px) {
+  .calc {
+    &__title.title {
+      font-size: var(--fluid-16-48);
+    }
+    &__wrapper {
+      column-gap: 20px;
+    }
+  }
+}
+
+@media (max-width: 992px) {
+  .calculator {
+    &__tab {
+      font-size: 16px;
+    }
+    &__sum {
+      padding-block: 30px;
+      min-width: 190px;
+      &-info {
+        gap: 10px;
+      }
+      &-text {
+        font-size: var(--fluid-14-24);
+      }
+      &-inner {
+        font-size: var(--fluid-14-24);
+      }
+      &-amount {
+        font-size: var(--fluid-20-24);
+      }
+    }
+    &__wrapper {
+      padding-inline: 10px;
+      padding-top: 30px;
+      padding-bottom: 30px;
+    }
+  }
+}
+
+@media (max-width: 710px) {
+  .calc {
+    padding-inline: 15px;
+    &__wrapper {
+      flex-wrap: wrap;
+    }
+    &__accent-word {
+      border-bottom-width: 2px;
+    }
+    &__inner {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+  }
+}
+
+@media (max-width: 577px) {
+  .calc {
+    padding-inline: 0;
+  }
+  .calculator {
+    &__tab {
+      font-size: 14px;
+      padding-inline: 12px;
+      padding-block: 12px;
+    }
+    &__notes {
+      font-size: 14px;
+    }
+    &__list {
+      padding-left: 20px;
+    }
+    &__list-item {
+      margin-top: 10px;
+      font-size: 14px;
+    }
+    &__item {
+      width: 350px;
+      &-text {
+        font-size: 14px;
+      }
+    }
+    &__rooms-text {
+      font-size: 22px;
     }
   }
 }
