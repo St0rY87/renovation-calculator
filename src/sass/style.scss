@@ -4,6 +4,7 @@
 @import "blocks/_calculator-square";
 @import "blocks/_calculator-require-works";
 @import "blocks/_calculator-repair-cost";
+@import "blocks/_popup";
 
 * {
   margin: 0;
@@ -58,7 +59,6 @@ body {
 }
 
 .accent {
-  // font-size: 14px;
   color: var(--color-accent);
 }
 

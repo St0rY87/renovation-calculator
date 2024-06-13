@@ -205,7 +205,9 @@
 @media (max-width: 1100px) {
   .calc {
     &__title.title {
-      font-size: var(--fluid-16-48);
+      font-size: var(--fluid-18-48);
+      font-size: var(--fluid-24-48);
+      line-height: 2;
     }
     &__wrapper {
       column-gap: 20px;
