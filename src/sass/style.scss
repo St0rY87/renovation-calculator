@@ -1,7 +1,8 @@
 @import "libs/fonts";
 @import "base/variables";
 @import "base/mixins";
-@import "blocks/calculator";
+@import "blocks/_calculator-square";
+@import "blocks/_calculator-require-works";
 
 * {
   margin: 0;
@@ -49,6 +50,11 @@ body {
   width: max-content;
   border: none;
   cursor: pointer;
+}
+
+.accent {
+  // font-size: 14px;
+  color: var(--color-accent);
 }
 
 @media (hover: hover) {
