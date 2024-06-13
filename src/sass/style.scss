@@ -3,6 +3,7 @@
 @import "base/mixins";
 @import "blocks/_calculator-square";
 @import "blocks/_calculator-require-works";
+@import "blocks/_calculator-repair-cost";
 
 * {
   margin: 0;
@@ -50,6 +51,10 @@ body {
   width: max-content;
   border: none;
   cursor: pointer;
+
+  &_long {
+    width: 185px;
+  }
 }
 
 .accent {
