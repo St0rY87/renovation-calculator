@@ -566,6 +566,10 @@ body {
   color: var(--color-accent);
 }
 
+.none {
+  display: none;
+}
+
 @media (hover: hover) {
   .button:hover {
     background-color: #fd702d;
