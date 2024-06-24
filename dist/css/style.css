@@ -12,6 +12,32 @@
   font-style: normal;
   font-display: swap;
 }
+.fade-in {
+  -webkit-animation: fade-in 1.2s ease-in both;
+  animation: fade-in 1.2s ease-in both;
+}
+
+@keyframes fade-in {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+.fade-out {
+  -webkit-animation: fade-out 1s ease-out both;
+  animation: fade-out 1s ease-out both;
+}
+
+@keyframes fade-out {
+  0% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
 :root {
   --color-main: #fff;
   --color-accent: #ff5f13;
