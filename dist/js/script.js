@@ -27,6 +27,46 @@ const handleInput = () => {
 };
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (handleInput);
 
+/***/ }),
+
+/***/ "./src/js/modules/tabs.js":
+/*!********************************!*\
+  !*** ./src/js/modules/tabs.js ***!
+  \********************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+const tabs = () => {
+  const tabs = document.querySelectorAll('.calculator__tab'),
+    tabsContent = document.querySelectorAll('.calculator__wrapper'),
+    tabsParent = document.querySelector('.calculator__wrapper-tabs');
+  const hideTabContent = () => {
+    tabs.forEach(tab => tab.classList.remove('calculator__tab_active'));
+    tabsContent.forEach(tabContent => tabContent.classList.add('none'));
+  };
+  const showTabContent = (i = 0) => {
+    tabs[i].classList.add('calculator__tab_active');
+    tabsContent[i].classList.remove('none');
+  };
+  hideTabContent();
+  showTabContent();
+  tabsParent.addEventListener('click', e => {
+    const target = e.target;
+    if (target && target.classList.contains('calculator__tab')) {
+      tabs.forEach((item, i) => {
+        if (target === item) {
+          hideTabContent();
+          showTabContent(i);
+        }
+      });
+    }
+  });
+};
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (tabs);
+
 /***/ })
 
 /******/ 	});
@@ -91,11 +131,14 @@ var __webpack_exports__ = {};
   \************************/
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _helpers_handleInput__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./helpers/handleInput */ "./src/js/helpers/handleInput.js");
+/* harmony import */ var _modules_tabs__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./modules/tabs */ "./src/js/modules/tabs.js");
+
 
 
 
 window.addEventListener('DOMContentLoaded', () => {
   (0,_helpers_handleInput__WEBPACK_IMPORTED_MODULE_0__["default"])();
+  (0,_modules_tabs__WEBPACK_IMPORTED_MODULE_1__["default"])();
 });
 /******/ })()
 ;
