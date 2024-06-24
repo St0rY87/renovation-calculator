@@ -72,7 +72,7 @@
   border: none;
   cursor: pointer;
 }
-.calculator__tab-square {
+.calculator__tab-active {
   border-bottom: 2px solid var(--color-accent);
 }
 .calculator__wrapper {
