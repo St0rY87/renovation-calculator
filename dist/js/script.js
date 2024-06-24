@@ -2,9 +2,9 @@
 /******/ 	"use strict";
 /******/ 	var __webpack_modules__ = ({
 
-/***/ "./src/js/helpers/handleinput.js":
+/***/ "./src/js/helpers/handleInput.js":
 /*!***************************************!*\
-  !*** ./src/js/helpers/handleinput.js ***!
+  !*** ./src/js/helpers/handleInput.js ***!
   \***************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
@@ -12,7 +12,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
-const handleinput = () => {
+const handleInput = () => {
   const inputs = document.querySelectorAll('.calculator__item-input');
   inputs.forEach(input => {
     input.addEventListener('input', e => {
@@ -25,7 +25,7 @@ const handleinput = () => {
     });
   });
 };
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (handleinput);
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (handleInput);
 
 /***/ })
 
@@ -90,12 +90,12 @@ var __webpack_exports__ = {};
   !*** ./src/js/main.js ***!
   \************************/
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _helpers_handleinput__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./helpers/handleinput */ "./src/js/helpers/handleinput.js");
+/* harmony import */ var _helpers_handleInput__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./helpers/handleInput */ "./src/js/helpers/handleInput.js");
 
 
 
 window.addEventListener('DOMContentLoaded', () => {
-  (0,_helpers_handleinput__WEBPACK_IMPORTED_MODULE_0__["default"])();
+  (0,_helpers_handleInput__WEBPACK_IMPORTED_MODULE_0__["default"])();
 });
 /******/ })()
 ;

@@ -1,4 +1,4 @@
-const handleinput = () => {
+const handleInput = () => {
     const inputs = document.querySelectorAll('.calculator__item-input');
 
     inputs.forEach(input => {
@@ -16,4 +16,4 @@ const handleinput = () => {
 
 
 
-export default handleinput;
+export default handleInput;

@@ -1,8 +1,8 @@
 'use strict'
 
-import handleinput from "./helpers/handleinput"
+import handleInput from "./helpers/handleInput"
 
 window.addEventListener('DOMContentLoaded', () => {
-    handleinput();
+    handleInput();
 
 })
