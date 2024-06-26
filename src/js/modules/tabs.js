@@ -4,19 +4,26 @@ const tabs = () => {
         tabsContent = document.querySelectorAll('.calculator__wrapper'),
         tabsParent = document.querySelector('.calculator__wrapper-tabs');
 
+
     const hideTabContent = () => {
-        tabs.forEach(tab => tab.classList.remove('calculator__tab_active'));
-        tabsContent.forEach(tabContent => tabContent.classList.add('none'));
+        tabs.forEach(tab => {
+            tab.classList.remove('calculator__tab_active');
+        });
+
+        tabsContent.forEach(tabContent => {
+            tabContent.classList.remove('fadeIn');
+            tabContent.classList.add('none');
+        });
+
     }
 
-
     const showTabContent = (i = 0) => {
-        tabs[i].classList.add('calculator__tab_active');
         tabsContent[i].classList.remove('none');
+        tabsContent[i].classList.add('fade-in');
+        tabs[i].classList.add('calculator__tab_active');
     }
     hideTabContent();
     showTabContent();
-
 
 
     tabsParent.addEventListener('click', (e) => {
