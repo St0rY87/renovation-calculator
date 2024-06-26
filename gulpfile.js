@@ -10,7 +10,7 @@ const dist = "./dist";
 
 gulp.task("copy-html", () => {
 	return gulp
-		.src("./src/index.html")
+		.src("./src/*.html")
 		.pipe(gulp.dest(dist))
 		.pipe(browsersync.stream());
 });
@@ -86,7 +86,7 @@ gulp.task("watch", () => {
 		notify: true,
 	});
 
-	gulp.watch("./src/index.html", gulp.parallel("copy-html"));
+	gulp.watch("./src/*.html", gulp.parallel("copy-html"));
 	gulp.watch("./src/icons/**/*.*", gulp.parallel("copy-assets"));
 	gulp.watch("./src/img/**/*.*", gulp.parallel("copy-assets"));
 	gulp.watch("./src/fonts/**/*.*", gulp.parallel("fonts"));
@@ -100,7 +100,7 @@ gulp.task(
 );
 
 gulp.task("prod", () => {
-	gulp.src("./src/index.html").pipe(gulp.dest(dist));
+	gulp.src("./src/*.html").pipe(gulp.dest(dist));
 	gulp.src("./src/img/**/*.*").pipe(gulp.dest(dist + "/img"));
 	gulp.src("./src/icons/**/*.*").pipe(gulp.dest(dist + "/icons"));
 

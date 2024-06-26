@@ -12,9 +12,9 @@
   font-style: normal;
   font-display: swap;
 }
-.fade-in {
-  -webkit-animation: fade-in 1.2s ease-in both;
-  animation: fade-in 1.2s ease-in both;
+.fadeIn {
+  -webkit-animation: fade-in 0.8s ease-in both;
+  animation: fade-in 0.8s ease-in both;
 }
 
 @keyframes fade-in {
@@ -25,9 +25,9 @@
     opacity: 1;
   }
 }
-.fade-out {
-  -webkit-animation: fade-out 1s ease-out both;
-  animation: fade-out 1s ease-out both;
+.fadeOut {
+  -webkit-animation: fade-out 0.6s ease-out both;
+  animation: fade-out 0.6s ease-out both;
 }
 
 @keyframes fade-out {
@@ -35,7 +35,7 @@
     opacity: 1;
   }
   100% {
-    opacity: 0;
+    opacity: 0.2;
   }
 }
 :root {
@@ -110,7 +110,7 @@
   max-width: 1000px;
 }
 .calculator__item {
-  width: 405px;
+  width: 420px;
 }
 .calculator__item-text {
   color: var(--color-main);
@@ -279,7 +279,7 @@
     padding-bottom: 30px;
   }
 }
-@media (max-width: 710px) {
+@media (max-width: 750px) {
   .calc {
     padding-inline: 15px;
   }
@@ -326,6 +326,9 @@
   .calculator__wrapper {
     padding-inline: 10px;
   }
+}
+.calculator__wrapper-require-works {
+  padding-top: 45px;
 }
 .calculator__content_require-works {
   column-gap: 20px;
