@@ -54,7 +54,7 @@
   }
 
   &__item {
-    width: 405px;
+    width: 420px;
   }
   &__item-text {
     color: var(--color-main);
@@ -241,7 +241,7 @@
   }
 }
 
-@media (max-width: 710px) {
+@media (max-width: 750px) {
   .calc {
     padding-inline: 15px;
     &__wrapper {

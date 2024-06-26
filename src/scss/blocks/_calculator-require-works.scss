@@ -1,4 +1,7 @@
 .calculator {
+  &__wrapper-require-works {
+    padding-top: 45px;
+  }
   &__content_require-works {
     column-gap: 20px;
     row-gap: 0px;
