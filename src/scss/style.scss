@@ -43,6 +43,8 @@ body {
 }
 
 .button {
+  display: block;
+  text-decoration: none;
   margin-top: 50px;
   color: var(--color-main);
   font-size: 18px;
