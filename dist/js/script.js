@@ -17,15 +17,60 @@ const handleInput = () => {
   inputs.forEach(input => {
     input.addEventListener('input', e => {
       let value = e.target.value;
-      value = value.replace(/\D/g, '');
-      if (value > 3) {
+      value = value.replace(/[^0-9-]/g, '');
+      if (value.length > 3) {
         value = value.slice(0, 3);
       }
+      ;
+      if (value.indexOf('-') !== -1) {
+        const parts = value.split('-');
+        value = '-' + parts.join('');
+        e.target.classList.add('error-input');
+      } else e.target.classList.remove('error-input');
       e.target.value = value;
     });
   });
 };
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (handleInput);
+
+/***/ }),
+
+/***/ "./src/js/helpers/showData.js":
+/*!************************************!*\
+  !*** ./src/js/helpers/showData.js ***!
+  \************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _services_services__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../services/services */ "./src/js/services/services.js");
+
+const showData = () => {
+  (0,_services_services__WEBPACK_IMPORTED_MODULE_0__.getResource)('http://localhost:3000/squares').then(res => {
+    const listItems = document.querySelector('.calculator__content_square');
+    res.forEach(item => {
+      const {
+        name,
+        value,
+        id
+      } = item;
+      const li = document.createElement('LI');
+      li.classList.add('calculator__item');
+      li.id = id;
+      li.innerHTML = `<label class="calculator__item-text"><span>${name}:</span>
+                        <div class="calculator__item-inner">
+                            <input class="calculator__item-input" type="text" placeholder="0.0">
+                            <span class="calculator__item-symb">м2</span>
+                        </div>
+                    </label>`;
+      listItems.appendChild(li);
+      document.querySelectorAll('.calculator__item-input').forEach(item => item.value = value);
+    });
+  });
+};
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (showData);
 
 /***/ }),
 
@@ -72,6 +117,40 @@ const tabs = () => {
   });
 };
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (tabs);
+
+/***/ }),
+
+/***/ "./src/js/services/services.js":
+/*!*************************************!*\
+  !*** ./src/js/services/services.js ***!
+  \*************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__),
+/* harmony export */   getResource: () => (/* binding */ getResource)
+/* harmony export */ });
+console.log('hello from services');
+const postData = async (url, data) => {
+  const res = await fetch(url, {
+    method: 'POST',
+    headers: {
+      'Content-type': 'apllication/json'
+    },
+    body: data
+  });
+  return await res.json();
+};
+const getResource = async url => {
+  const res = await fetch(url);
+  if (!res.ok) {
+    throw new Error(`couldn't get data, status response is ${res.status}`);
+  }
+  return await res.json();
+};
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (postData);
+
 
 /***/ })
 
@@ -138,6 +217,8 @@ var __webpack_exports__ = {};
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _helpers_handleInput__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./helpers/handleInput */ "./src/js/helpers/handleInput.js");
 /* harmony import */ var _modules_tabs__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./modules/tabs */ "./src/js/modules/tabs.js");
+/* harmony import */ var _helpers_showData__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./helpers/showData */ "./src/js/helpers/showData.js");
+
 
 
 
@@ -145,6 +226,7 @@ __webpack_require__.r(__webpack_exports__);
 window.addEventListener('DOMContentLoaded', () => {
   (0,_helpers_handleInput__WEBPACK_IMPORTED_MODULE_0__["default"])();
   (0,_modules_tabs__WEBPACK_IMPORTED_MODULE_1__["default"])();
+  (0,_helpers_showData__WEBPACK_IMPORTED_MODULE_2__["default"])();
 });
 /******/ })()
 ;

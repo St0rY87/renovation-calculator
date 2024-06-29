@@ -14,7 +14,6 @@ const handleInput = () => {
                 const parts = value.split('-');
                 value = '-' + parts.join('');
                 e.target.classList.add('error-input');
-                console.log(e.target);
             }
             else e.target.classList.remove('error-input');
 
