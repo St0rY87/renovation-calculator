@@ -45,6 +45,7 @@
     border-bottom: 2px solid var(--color-accent);
   }
   &__wrapper {
+    position: relative;
     min-height: 700px;
     display: flex;
     flex-direction: column;
