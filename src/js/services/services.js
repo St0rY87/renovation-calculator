@@ -1,4 +1,3 @@
-console.log('hello from services')
 const postData = async (url, data) => {
     const res = await fetch(url, {
         method: 'POST',

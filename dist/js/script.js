@@ -48,8 +48,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _services_services__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../services/services */ "./src/js/services/services.js");
 
 const showData = () => {
+  const listItems = document.querySelector('.calculator__content_square');
   (0,_services_services__WEBPACK_IMPORTED_MODULE_0__.getResource)('http://localhost:3000/squares').then(res => {
-    const listItems = document.querySelector('.calculator__content_square');
     res.forEach(item => {
       const {
         name,
@@ -131,7 +131,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__),
 /* harmony export */   getResource: () => (/* binding */ getResource)
 /* harmony export */ });
-console.log('hello from services');
 const postData = async (url, data) => {
   const res = await fetch(url, {
     method: 'POST',

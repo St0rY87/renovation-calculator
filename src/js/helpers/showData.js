@@ -1,8 +1,10 @@
 import { getResource } from '../services/services';
 const showData = () => {
+    const listItems = document.querySelector('.calculator__content_square');
+
     getResource('http://localhost:3000/squares')
         .then(res => {
-            const listItems = document.querySelector('.calculator__content_square');
+
             res.forEach(item => {
                 const { name, value, id } = item;
                 const li = document.createElement('LI');

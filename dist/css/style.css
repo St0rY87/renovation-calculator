@@ -102,6 +102,9 @@
   border-bottom: 2px solid var(--color-accent);
 }
 .calculator__wrapper {
+  min-height: 700px;
+  display: flex;
+  flex-direction: column;
   background: var(--color-backg);
   box-shadow: var(--box-shadow);
   padding-inline: 50px;
@@ -169,7 +172,7 @@
   line-height: normal;
 }
 .calculator__footer {
-  margin-top: 51px;
+  margin-top: auto;
   max-width: 795px;
 }
 .calculator__notes {
