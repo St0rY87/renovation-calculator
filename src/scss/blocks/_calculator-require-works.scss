@@ -1,5 +1,8 @@
 .calculator {
   &__wrapper-require-works {
+    min-height: 700px;
+    display: flex;
+    flex-direction: column;
     padding-top: 45px;
   }
   &__content_require-works {
