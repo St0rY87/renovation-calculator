@@ -16,7 +16,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _handleInput__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./handleInput */ "./src/js/helpers/handleInput.js");
 
 
-const showData = (selectorListItems, selectorOverlay, ref, markupTemplate, ...variables) => {
+const showData = (selectorListItems, selectorOverlay, ref, value, markupTemplate, ...variables) => {
   const listItems = document.querySelector(selectorListItems),
     overlay = document.querySelector(selectorOverlay);
   overlay.classList.remove('none');
@@ -32,12 +32,15 @@ const showData = (selectorListItems, selectorOverlay, ref, markupTemplate, ...va
       li.id = selectedVariables.id;
       li.innerHTML = markupTemplate(selectedVariables);
       listItems.appendChild(li);
+      if (value || value === 0) {
+        document.querySelectorAll('.calculator__item-input').forEach(item => item.value = value);
+      }
     });
   }).catch(error => {
     console.error('Error fetching data');
   });
 };
-showData('.calculator__content_square', '.overlay', 'http://localhost:3000/squares', selectedVariable => `
+showData('.calculator__content_square', '.overlay', 'http://localhost:3000/squares', 0, selectedVariable => `
         <label class="calculator__item-text">
         <span>${selectedVariable.name}:</span>
             <div class="calculator__item-inner">
@@ -45,7 +48,7 @@ showData('.calculator__content_square', '.overlay', 'http://localhost:3000/squar
         <span class="calculator__item-symb">м2</span>
             </div>
         </label>`, 'id', 'name');
-showData('.calculator__content_require-works', '.overlay.overlay_require-works', 'http://localhost:3000/operations', selectedVariable => `
+showData('.calculator__content_require-works', '.overlay.overlay_require-works', 'http://localhost:3000/operations', null, selectedVariable => `
                            <label class="calculator__item-text calculator__item-text_require-works">
                                             <p>${selectedVariable.name}
                                                 <span
@@ -94,6 +97,28 @@ const handleInput = () => {
   });
 };
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (handleInput);
+
+/***/ }),
+
+/***/ "./src/js/helpers/modal.js":
+/*!*********************************!*\
+  !*** ./src/js/helpers/modal.js ***!
+  \*********************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+const openModal = () => {
+  const btn = document.querySelector('.calc_button'),
+    modal = document.querySelector('.popup-admin');
+  btn.addEventListener('click', () => {
+    modal.classList.remove('none');
+    document.body.style.overflow = 'hidden';
+  });
+};
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (openModal);
 
 /***/ }),
 
@@ -239,15 +264,18 @@ var __webpack_exports__ = {};
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _modules_tabs__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./modules/tabs */ "./src/js/modules/tabs.js");
 /* harmony import */ var _helpers_handleData__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./helpers/handleData */ "./src/js/helpers/handleData.js");
+/* harmony import */ var _helpers_modal__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./helpers/modal */ "./src/js/helpers/modal.js");
 
 
 // import handleInput from "./helpers/handleInput"
-
-
 // import { showDataRequireWorks } from "./helpers/handleData"
+
+
 
 window.addEventListener('DOMContentLoaded', () => {
   (0,_modules_tabs__WEBPACK_IMPORTED_MODULE_0__["default"])();
+  (0,_helpers_modal__WEBPACK_IMPORTED_MODULE_2__["default"])();
+  modal();
 });
 /******/ })()
 ;

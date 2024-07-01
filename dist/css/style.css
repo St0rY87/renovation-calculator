@@ -457,9 +457,7 @@
   top: 0;
   width: 100vw;
   height: 100vh;
-  overflow: hidden;
   background-color: rgba(0, 0, 0, 0.3);
-  display: none;
 }
 .popup-admin__text {
   color: var(--color-main);
@@ -476,7 +474,7 @@
   line-height: normal;
 }
 .popup-admin__form {
-  padding: 63px;
+  padding: 60px 60px 45px 60px;
   max-width: 450px;
   margin: 50px auto 0;
   background-image: var(--color-backg);
@@ -509,7 +507,6 @@
 .popup-admin__form-btn {
   padding-inline: 58px;
   padding-block: 8px;
-  margin-top: 20px;
   color: #000;
   text-align: center;
   font-size: var(--fluid-22-24);
@@ -522,8 +519,8 @@
   font-size: 18px;
   font-weight: 400;
   line-height: normal;
+  margin-bottom: 25px;
   color: #f21919;
-  display: none;
 }
 
 @media (min-height: 1280px) {
