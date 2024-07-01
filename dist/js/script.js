@@ -2,6 +2,68 @@
 /******/ 	"use strict";
 /******/ 	var __webpack_modules__ = ({
 
+/***/ "./src/js/helpers/handleData.js":
+/*!**************************************!*\
+  !*** ./src/js/helpers/handleData.js ***!
+  \**************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _services_services__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../services/services */ "./src/js/services/services.js");
+/* harmony import */ var _handleInput__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./handleInput */ "./src/js/helpers/handleInput.js");
+
+
+const showData = (selectorListItems, selectorOverlay, ref, markupTemplate, ...variables) => {
+  const listItems = document.querySelector(selectorListItems),
+    overlay = document.querySelector(selectorOverlay);
+  overlay.classList.remove('none');
+  (0,_services_services__WEBPACK_IMPORTED_MODULE_0__.getResource)(ref).then(res => {
+    overlay.classList.add('none');
+    res.forEach(item => {
+      const selectedVariables = {};
+      variables.forEach(variable => {
+        selectedVariables[variable] = item[variable];
+      });
+      const li = document.createElement('LI');
+      li.classList.add('calculator__item');
+      li.id = selectedVariables.id;
+      li.innerHTML = markupTemplate(selectedVariables);
+      listItems.appendChild(li);
+    });
+  }).catch(error => {
+    console.error('Error fetching data');
+  });
+};
+showData('.calculator__content_square', '.overlay', 'http://localhost:3000/squares', selectedVariable => `
+        <label class="calculator__item-text">
+        <span>${selectedVariable.name}:</span>
+            <div class="calculator__item-inner">
+            <input class="calculator__item-input" type="text" placeholder="0.0">
+        <span class="calculator__item-symb">м2</span>
+            </div>
+        </label>`, 'id', 'name');
+showData('.calculator__content_require-works', '.overlay.overlay_require-works', 'http://localhost:3000/operations', selectedVariable => `
+                           <label class="calculator__item-text calculator__item-text_require-works">
+                                            <p>${selectedVariable.name}
+                                                <span
+                                                    class=" accent calculator__item-accent calculator__item-accent_require-works ">
+                                                    ${selectedVariable.count}/${selectedVariable.unit}</span>
+                                            </p>
+                                            <div class="calculator__item-inner  calculator__item-inner_require-works ">
+                                                <input type="checkbox" class="checkbox dismantling" name="dismantling">
+                                            </div>
+                                        </label>
+                                    `, 'id', 'name', 'count', 'unit');
+setTimeout(() => {
+  (0,_handleInput__WEBPACK_IMPORTED_MODULE_1__["default"])();
+}, 2000);
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (showData);
+
+/***/ }),
+
 /***/ "./src/js/helpers/handleInput.js":
 /*!***************************************!*\
   !*** ./src/js/helpers/handleInput.js ***!
@@ -32,45 +94,6 @@ const handleInput = () => {
   });
 };
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (handleInput);
-
-/***/ }),
-
-/***/ "./src/js/helpers/showData.js":
-/*!************************************!*\
-  !*** ./src/js/helpers/showData.js ***!
-  \************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
-/* harmony export */ });
-/* harmony import */ var _services_services__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../services/services */ "./src/js/services/services.js");
-
-const showData = () => {
-  const listItems = document.querySelector('.calculator__content_square');
-  (0,_services_services__WEBPACK_IMPORTED_MODULE_0__.getResource)('http://localhost:3000/squares').then(res => {
-    res.forEach(item => {
-      const {
-        name,
-        value,
-        id
-      } = item;
-      const li = document.createElement('LI');
-      li.classList.add('calculator__item');
-      li.id = id;
-      li.innerHTML = `<label class="calculator__item-text"><span>${name}:</span>
-                        <div class="calculator__item-inner">
-                            <input class="calculator__item-input" type="text" placeholder="0.0">
-                            <span class="calculator__item-symb">м2</span>
-                        </div>
-                    </label>`;
-      listItems.appendChild(li);
-      document.querySelectorAll('.calculator__item-input').forEach(item => item.value = value);
-    });
-  });
-};
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (showData);
 
 /***/ }),
 
@@ -214,18 +237,17 @@ var __webpack_exports__ = {};
   !*** ./src/js/main.js ***!
   \************************/
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _helpers_handleInput__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./helpers/handleInput */ "./src/js/helpers/handleInput.js");
-/* harmony import */ var _modules_tabs__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./modules/tabs */ "./src/js/modules/tabs.js");
-/* harmony import */ var _helpers_showData__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./helpers/showData */ "./src/js/helpers/showData.js");
+/* harmony import */ var _modules_tabs__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./modules/tabs */ "./src/js/modules/tabs.js");
+/* harmony import */ var _helpers_handleData__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./helpers/handleData */ "./src/js/helpers/handleData.js");
 
 
+// import handleInput from "./helpers/handleInput"
 
 
+// import { showDataRequireWorks } from "./helpers/handleData"
 
 window.addEventListener('DOMContentLoaded', () => {
-  (0,_helpers_handleInput__WEBPACK_IMPORTED_MODULE_0__["default"])();
-  (0,_modules_tabs__WEBPACK_IMPORTED_MODULE_1__["default"])();
-  (0,_helpers_showData__WEBPACK_IMPORTED_MODULE_2__["default"])();
+  (0,_modules_tabs__WEBPACK_IMPORTED_MODULE_0__["default"])();
 });
 /******/ })()
 ;
