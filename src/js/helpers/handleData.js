@@ -1,7 +1,7 @@
 import { getResource } from '../services/services';
 import handleInput from './handleInput';
 
-const showData = (selectorListItems, selectorOverlay, ref, markupTemplate, ...variables) => {
+const showData = (selectorListItems, selectorOverlay, ref, value, markupTemplate, ...variables) => {
     const listItems = document.querySelector(selectorListItems),
         overlay = document.querySelector(selectorOverlay);
     overlay.classList.remove('none');
@@ -20,6 +20,9 @@ const showData = (selectorListItems, selectorOverlay, ref, markupTemplate, ...va
                 li.innerHTML = markupTemplate(selectedVariables);
 
                 listItems.appendChild(li);
+                if (value || value === 0) {
+                    document.querySelectorAll('.calculator__item-input').forEach(item => item.value = value);
+                }
             });
         })
         .catch(error => {
@@ -30,7 +33,7 @@ const showData = (selectorListItems, selectorOverlay, ref, markupTemplate, ...va
 showData('.calculator__content_square',
     '.overlay',
     'http://localhost:3000/squares',
-
+    0,
     (selectedVariable) => `
         <label class="calculator__item-text">
         <span>${selectedVariable.name}:</span>
@@ -46,6 +49,7 @@ showData('.calculator__content_square',
 showData('.calculator__content_require-works',
     '.overlay.overlay_require-works',
     'http://localhost:3000/operations',
+    null,
 
     (selectedVariable) => `
                            <label class="calculator__item-text calculator__item-text_require-works">
@@ -62,5 +66,5 @@ showData('.calculator__content_require-works',
 
     'id', 'name', 'count', 'unit'
 )
-setTimeout(() => { handleInput() }, 2000)
+setTimeout(() => { handleInput() }, 2000);
 export default showData;
