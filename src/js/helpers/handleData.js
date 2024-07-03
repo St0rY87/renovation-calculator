@@ -1,7 +1,7 @@
 import { getResource } from '../services/services';
 import handleInput from './handleInput';
 
-const showData = (selectorListItems, selectorOverlay, ref, value, markupTemplate, ...variables) => {
+const showData = (selectorListItems, selectorOverlay, ref, showValue, markupTemplate, ...variables) => {
     const listItems = document.querySelector(selectorListItems),
         overlay = document.querySelector(selectorOverlay);
     if (overlay) {
@@ -19,11 +19,10 @@ const showData = (selectorListItems, selectorOverlay, ref, value, markupTemplate
                     li.classList.add('calculator__item');
                     li.id = selectedVariables.id;
                     li.innerHTML = markupTemplate(selectedVariables);
-
-                    listItems.appendChild(li);
-                    if (value || value === 0) {
-                        document.querySelectorAll('.calculator__item-input').forEach(item => item.value = value);
+                    if (showValue) {
+                        li.querySelector('.calculator__item-input').value = item.value;
                     }
+                    listItems.appendChild(li);
                 });
             })
             .catch(error => {
@@ -33,10 +32,11 @@ const showData = (selectorListItems, selectorOverlay, ref, value, markupTemplate
 
 }
 
+
 showData('.calculator__content_square',
-    '.overlay',
+    '.overlay.overlay_square',
     'http://localhost:3000/squares',
-    0,
+    true,
     (selectedVariable) => `
         <label class="calculator__item-text">
         <span>${selectedVariable.name}:</span>
@@ -46,7 +46,7 @@ showData('.calculator__content_square',
             </div>
         </label>`,
 
-    'id', 'name'
+    'id', 'name', 'value'
 )
 
 showData('.calculator__content_require-works',
@@ -69,5 +69,7 @@ showData('.calculator__content_require-works',
 
     'id', 'name', 'count', 'unit'
 )
+
+
 setTimeout(() => { handleInput() }, 2000);
 export default showData;
