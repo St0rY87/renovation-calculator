@@ -2,6 +2,29 @@
 /******/ 	"use strict";
 /******/ 	var __webpack_modules__ = ({
 
+/***/ "./src/js/helpers/checkUser.js":
+/*!*************************************!*\
+  !*** ./src/js/helpers/checkUser.js ***!
+  \*************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+const checkUser = (item, form) => {
+  item.forEach(user => {
+    const login = form.login.value,
+      password = form.password.value;
+    if (user.login === login && user.password === password) {
+      window.location.href = '/repair-cost.html';
+    }
+  });
+};
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (checkUser);
+
+/***/ }),
+
 /***/ "./src/js/helpers/handleData.js":
 /*!**************************************!*\
   !*** ./src/js/helpers/handleData.js ***!
@@ -19,26 +42,28 @@ __webpack_require__.r(__webpack_exports__);
 const showData = (selectorListItems, selectorOverlay, ref, value, markupTemplate, ...variables) => {
   const listItems = document.querySelector(selectorListItems),
     overlay = document.querySelector(selectorOverlay);
-  overlay.classList.remove('none');
-  (0,_services_services__WEBPACK_IMPORTED_MODULE_0__.getResource)(ref).then(res => {
-    overlay.classList.add('none');
-    res.forEach(item => {
-      const selectedVariables = {};
-      variables.forEach(variable => {
-        selectedVariables[variable] = item[variable];
+  if (overlay) {
+    overlay.classList.remove('none');
+    (0,_services_services__WEBPACK_IMPORTED_MODULE_0__.getResource)(ref).then(res => {
+      overlay.classList.add('none');
+      res.forEach(item => {
+        const selectedVariables = {};
+        variables.forEach(variable => {
+          selectedVariables[variable] = item[variable];
+        });
+        const li = document.createElement('LI');
+        li.classList.add('calculator__item');
+        li.id = selectedVariables.id;
+        li.innerHTML = markupTemplate(selectedVariables);
+        listItems.appendChild(li);
+        if (value || value === 0) {
+          document.querySelectorAll('.calculator__item-input').forEach(item => item.value = value);
+        }
       });
-      const li = document.createElement('LI');
-      li.classList.add('calculator__item');
-      li.id = selectedVariables.id;
-      li.innerHTML = markupTemplate(selectedVariables);
-      listItems.appendChild(li);
-      if (value || value === 0) {
-        document.querySelectorAll('.calculator__item-input').forEach(item => item.value = value);
-      }
+    }).catch(error => {
+      console.error('Error fetching data');
     });
-  }).catch(error => {
-    console.error('Error fetching data');
-  });
+  }
 };
 showData('.calculator__content_square', '.overlay', 'http://localhost:3000/squares', 0, selectedVariable => `
         <label class="calculator__item-text">
@@ -122,6 +147,33 @@ const openModal = () => {
 
 /***/ }),
 
+/***/ "./src/js/modules/form.js":
+/*!********************************!*\
+  !*** ./src/js/modules/form.js ***!
+  \********************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _services_services__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../services/services */ "./src/js/services/services.js");
+/* harmony import */ var _helpers_checkUser__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../helpers/checkUser */ "./src/js/helpers/checkUser.js");
+
+
+const form = () => {
+  const form = document.querySelector('.popup-admin__form');
+  if (form) {
+    form.addEventListener('submit', e => {
+      e.preventDefault();
+      (0,_services_services__WEBPACK_IMPORTED_MODULE_0__.getResource)('http://localhost:3000/users').then(res => (0,_helpers_checkUser__WEBPACK_IMPORTED_MODULE_1__["default"])(res, form));
+    });
+  }
+};
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (form);
+
+/***/ }),
+
 /***/ "./src/js/modules/tabs.js":
 /*!********************************!*\
   !*** ./src/js/modules/tabs.js ***!
@@ -145,24 +197,26 @@ const tabs = () => {
       tabContent.classList.add('none');
     });
   };
-  const showTabContent = (i = 0) => {
-    tabsContent[i].classList.remove('none');
-    tabsContent[i].classList.add('fade-in');
-    tabs[i].classList.add('calculator__tab_active');
-  };
-  hideTabContent();
-  showTabContent();
-  tabsParent.addEventListener('click', e => {
-    const target = e.target;
-    if (target && target.classList.contains('calculator__tab')) {
-      tabs.forEach((item, i) => {
-        if (target === item) {
-          hideTabContent();
-          showTabContent(i);
-        }
-      });
-    }
-  });
+  try {
+    const showTabContent = (i = 0) => {
+      tabsContent[i].classList.remove('none');
+      tabsContent[i].classList.add('fade-in');
+      tabs[i].classList.add('calculator__tab_active');
+    };
+    hideTabContent();
+    showTabContent();
+    tabsParent.addEventListener('click', e => {
+      const target = e.target;
+      if (target && target.classList.contains('calculator__tab')) {
+        tabs.forEach((item, i) => {
+          if (target === item) {
+            hideTabContent();
+            showTabContent(i);
+          }
+        });
+      }
+    });
+  } catch (error) {}
 };
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (tabs);
 
@@ -265,6 +319,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _modules_tabs__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./modules/tabs */ "./src/js/modules/tabs.js");
 /* harmony import */ var _helpers_handleData__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./helpers/handleData */ "./src/js/helpers/handleData.js");
 /* harmony import */ var _helpers_modal__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./helpers/modal */ "./src/js/helpers/modal.js");
+/* harmony import */ var _modules_form__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./modules/form */ "./src/js/modules/form.js");
 
 
 // import handleInput from "./helpers/handleInput"
@@ -272,10 +327,13 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
+
+
 window.addEventListener('DOMContentLoaded', () => {
   (0,_modules_tabs__WEBPACK_IMPORTED_MODULE_0__["default"])();
   (0,_helpers_modal__WEBPACK_IMPORTED_MODULE_2__["default"])();
-  modal();
+  (0,_helpers_modal__WEBPACK_IMPORTED_MODULE_2__["default"])();
+  (0,_modules_form__WEBPACK_IMPORTED_MODULE_3__["default"])();
 });
 /******/ })()
 ;

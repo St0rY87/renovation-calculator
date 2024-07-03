@@ -4,30 +4,33 @@ import handleInput from './handleInput';
 const showData = (selectorListItems, selectorOverlay, ref, value, markupTemplate, ...variables) => {
     const listItems = document.querySelector(selectorListItems),
         overlay = document.querySelector(selectorOverlay);
-    overlay.classList.remove('none');
-    getResource(ref)
-        .then(res => {
-            overlay.classList.add('none');
-            res.forEach(item => {
+    if (overlay) {
+        overlay.classList.remove('none');
+        getResource(ref)
+            .then(res => {
+                overlay.classList.add('none');
+                res.forEach(item => {
 
-                const selectedVariables = {};
-                variables.forEach(variable => {
-                    selectedVariables[variable] = item[variable];
-                })
-                const li = document.createElement('LI');
-                li.classList.add('calculator__item');
-                li.id = selectedVariables.id;
-                li.innerHTML = markupTemplate(selectedVariables);
+                    const selectedVariables = {};
+                    variables.forEach(variable => {
+                        selectedVariables[variable] = item[variable];
+                    })
+                    const li = document.createElement('LI');
+                    li.classList.add('calculator__item');
+                    li.id = selectedVariables.id;
+                    li.innerHTML = markupTemplate(selectedVariables);
 
-                listItems.appendChild(li);
-                if (value || value === 0) {
-                    document.querySelectorAll('.calculator__item-input').forEach(item => item.value = value);
-                }
-            });
-        })
-        .catch(error => {
-            console.error('Error fetching data');
-        })
+                    listItems.appendChild(li);
+                    if (value || value === 0) {
+                        document.querySelectorAll('.calculator__item-input').forEach(item => item.value = value);
+                    }
+                });
+            })
+            .catch(error => {
+                console.error('Error fetching data');
+            })
+    }
+
 }
 
 showData('.calculator__content_square',
