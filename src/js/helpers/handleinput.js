@@ -22,5 +22,23 @@ const handleInput = () => {
     })
 }
 
+const checkMaxLengthInput = (selectorInputLogin, selectorInputs, classNameError, maxLengthInput, selectorErrorText) => {
+    const inputs = document.querySelectorAll(selectorInputs),
+        inputLogin = document.querySelector(selectorInputLogin),
+        errorText = document.querySelector(selectorErrorText);
+    inputLogin.addEventListener('input', () => {
+        if (inputLogin.value.length > maxLengthInput) {
+            inputs.forEach(input => input.classList.add(classNameError));
+            errorText.classList.remove('none');
+        }
+        else {
+            inputs.forEach(input => input.classList.remove(classNameError));
+            errorText.classList.add('none');
+        }
+    })
 
-export default handleInput
+
+}
+
+export default handleInput;
+export { checkMaxLengthInput };

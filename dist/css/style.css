@@ -515,12 +515,16 @@
   cursor: pointer;
 }
 
-.error {
+.errorText {
   font-size: 18px;
   font-weight: 400;
   line-height: normal;
   margin-bottom: 25px;
   color: #f21919;
+}
+
+.errorBorder {
+  border: 1px solid #f21919;
 }
 
 @media (min-height: 1280px) {

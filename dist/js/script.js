@@ -12,15 +12,38 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
+/* harmony import */ var _handleInput__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./handleInput */ "./src/js/helpers/handleInput.js");
+
 const checkUser = (item, form) => {
+  const login = form.login.value,
+    password = form.password.value,
+    errorText = form.querySelector('.errorText'),
+    inputs = form.querySelectorAll('input');
+  let isLogin = false;
   item.forEach(user => {
-    const login = form.login.value,
-      password = form.password.value;
     if (user.login === login && user.password === password) {
+      errorText.classList.add('none');
+      inputs.forEach(input => {
+        input.classList.remove('errorBorder');
+      });
+      isLogin = true;
       window.location.href = '/repair-cost.html';
+    } else {
+      if (isLogin) {
+        errorText.classList.add('none');
+        inputs.forEach(input => {
+          input.classList.remove('errorBorder');
+        });
+      } else {
+        errorText.classList.remove('none');
+        inputs.forEach(input => {
+          input.classList.add('errorBorder');
+        });
+      }
     }
   });
 };
+(0,_handleInput__WEBPACK_IMPORTED_MODULE_0__.checkMaxLengthInput)('#login', '.popup-admin__form-input', 'errorBorder', '4', '.errorText');
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (checkUser);
 
 /***/ }),
@@ -100,6 +123,7 @@ setTimeout(() => {
 
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   checkMaxLengthInput: () => (/* binding */ checkMaxLengthInput),
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
 const handleInput = () => {
@@ -121,7 +145,22 @@ const handleInput = () => {
     });
   });
 };
+const checkMaxLengthInput = (selectorInputLogin, selectorInputs, classNameError, maxLengthInput, selectorErrorText) => {
+  const inputs = document.querySelectorAll(selectorInputs),
+    inputLogin = document.querySelector(selectorInputLogin),
+    errorText = document.querySelector(selectorErrorText);
+  inputLogin.addEventListener('input', () => {
+    if (inputLogin.value.length > maxLengthInput) {
+      inputs.forEach(input => input.classList.add(classNameError));
+      errorText.classList.remove('none');
+    } else {
+      inputs.forEach(input => input.classList.remove(classNameError));
+      errorText.classList.add('none');
+    }
+  });
+};
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (handleInput);
+
 
 /***/ }),
 
