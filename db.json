@@ -191,5 +191,15 @@
       "unit": "грн/шт",
       "id": "ceiling-plinth"
     }
+  ],
+  "users": [
+    {
+      "login": "dima",
+      "password": "123"
+    },
+    {
+      "login": "alex",
+      "password": "123"
+    }
   ]
 }
