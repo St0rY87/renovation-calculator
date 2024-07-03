@@ -5,15 +5,26 @@
 }
 
 .calculator {
+  &__content_repair-cost {
+    justify-content: flex-start;
+    column-gap: 115px;
+  }
   &__wrapper_repair-cost {
     max-width: 1240px;
     padding: 50px;
   }
   &__item_repair-cost {
-    width: 452px;
+    width: 510px;
   }
   &__item-text_repair-cost {
     font-size: 16px;
+  }
+  &__item-inner_repair-cost {
+    margin-left: unset;
+    padding-left: 60px;
+  }
+  &__item-text_repair-cost {
+    grid-template-columns: 1.2fr 1fr;
   }
   &__rooms-text_repair-cost {
     margin-top: 0;
