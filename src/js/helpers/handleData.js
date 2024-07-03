@@ -1,7 +1,7 @@
 import { getResource } from '../services/services';
 import handleInput from './handleInput';
 
-const showData = (selectorListItems, selectorOverlay, ref, showValue, markupTemplate, ...variables) => {
+const showData = (selectorListItems, selectorOverlay, ref, classes, showValue, showPlaceholder, markupTemplate, ...variables) => {
     const listItems = document.querySelector(selectorListItems),
         overlay = document.querySelector(selectorOverlay);
     if (overlay) {
@@ -16,11 +16,14 @@ const showData = (selectorListItems, selectorOverlay, ref, showValue, markupTemp
                         selectedVariables[variable] = item[variable];
                     })
                     const li = document.createElement('LI');
-                    li.classList.add('calculator__item');
+                    li.classList.add(...classes);
                     li.id = selectedVariables.id;
                     li.innerHTML = markupTemplate(selectedVariables);
                     if (showValue) {
                         li.querySelector('.calculator__item-input').value = item.value;
+                    }
+                    if (showPlaceholder) {
+                        li.querySelector('.calculator__item-input').placeholder = item.value;
                     }
                     listItems.appendChild(li);
                 });
@@ -31,12 +34,29 @@ const showData = (selectorListItems, selectorOverlay, ref, showValue, markupTemp
     }
 
 }
-
+showData('.calculator__content_repair-cost',
+    '.overlay.overlay_repair-cost',
+    'http://localhost:3000/operations',
+    ['calculator__item', 'calculator__item_repair-cost'],
+    null,
+    true,
+    (selectedVariable) =>
+        ` <label class="calculator__item-text calculator__item-text_repair-cost">
+            ${selectedVariable.name}
+                <div class="calculator__item-inner calculator__item-inner_repair-cost">
+                    <input type="text" class="calculator__item-input" placeholder="0.0">
+                    <span class="calculator__item-symb">${selectedVariable.unit}</span>
+                </div>
+        </label>`,
+    'id', 'value', 'unit', 'name'
+)
 
 showData('.calculator__content_square',
     '.overlay.overlay_square',
     'http://localhost:3000/squares',
+    ['calculator__item'],
     true,
+    null,
     (selectedVariable) => `
         <label class="calculator__item-text">
         <span>${selectedVariable.name}:</span>
@@ -52,14 +72,15 @@ showData('.calculator__content_square',
 showData('.calculator__content_require-works',
     '.overlay.overlay_require-works',
     'http://localhost:3000/operations',
+    ['calculator__item'],
     null,
-
+    null,
     (selectedVariable) => `
                            <label class="calculator__item-text calculator__item-text_require-works">
                                             <p>${selectedVariable.name}
                                                 <span
                                                     class=" accent calculator__item-accent calculator__item-accent_require-works ">
-                                                    ${selectedVariable.count}/${selectedVariable.unit}</span>
+                                                    ${selectedVariable.value}/${selectedVariable.unit}</span>
                                             </p>
                                             <div class="calculator__item-inner  calculator__item-inner_require-works ">
                                                 <input type="checkbox" class="checkbox dismantling" name="dismantling">
@@ -67,7 +88,7 @@ showData('.calculator__content_require-works',
                                         </label>
                                     `,
 
-    'id', 'name', 'count', 'unit'
+    'id', 'name', 'value', 'unit'
 )
 
 
