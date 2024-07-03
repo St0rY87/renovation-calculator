@@ -1,21 +1,23 @@
 import { checkMaxLengthInput } from "./handleInput";
+import addUserLocalStorage from "../modules/localStorage";
 
 const checkUser = (item, form) => {
     const login = form.login.value,
         password = form.password.value,
         errorText = form.querySelector('.errorText'),
         inputs = form.querySelectorAll('input');
-    let isLogin = false;
+    let isActiveUser = false;
     item.forEach(user => {
         if (user.login === login && user.password === password) {
+            isActiveUser = true;
+            addUserLocalStorage(login, isActiveUser);
             errorText.classList.add('none');
             inputs.forEach(input => {
                 input.classList.remove('errorBorder');
             })
-            isLogin = true;
             window.location.href = '/repair-cost.html';
         } else {
-            if (isLogin) {
+            if (isActiveUser) {
                 errorText.classList.add('none');
                 inputs.forEach(input => {
                     input.classList.remove('errorBorder');
@@ -31,6 +33,6 @@ const checkUser = (item, form) => {
         }
     });
 };
-checkMaxLengthInput('#login', '.popup-admin__form-input', 'errorBorder', '4', '.errorText');
+checkMaxLengthInput('#login', '.popup-admin__form-input', 'errorBorder', '20', '.errorText');
 
 export default checkUser;

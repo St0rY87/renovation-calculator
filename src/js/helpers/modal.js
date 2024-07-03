@@ -1,9 +1,16 @@
+import { checkUserInLocalStorage } from "../modules/localStorage";
 const openModal = () => {
     const btn = document.querySelector('.calc_button'),
         modal = document.querySelector('.popup-admin');
     btn.addEventListener('click', () => {
-        modal.classList.remove('none')
-        document.body.style.overflow = 'hidden';
+        if (checkUserInLocalStorage()) {
+            window.location.href = '/repair-cost.html';
+        }
+        else {
+            modal.classList.remove('none')
+            document.body.style.overflow = 'hidden';
+        }
+
     })
 }
 

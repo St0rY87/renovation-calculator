@@ -13,23 +13,26 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
 /* harmony import */ var _handleInput__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./handleInput */ "./src/js/helpers/handleInput.js");
+/* harmony import */ var _modules_localStorage__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../modules/localStorage */ "./src/js/modules/localStorage.js");
+
 
 const checkUser = (item, form) => {
   const login = form.login.value,
     password = form.password.value,
     errorText = form.querySelector('.errorText'),
     inputs = form.querySelectorAll('input');
-  let isLogin = false;
+  let isActiveUser = false;
   item.forEach(user => {
     if (user.login === login && user.password === password) {
+      isActiveUser = true;
+      (0,_modules_localStorage__WEBPACK_IMPORTED_MODULE_1__["default"])(login, isActiveUser);
       errorText.classList.add('none');
       inputs.forEach(input => {
         input.classList.remove('errorBorder');
       });
-      isLogin = true;
       window.location.href = '/repair-cost.html';
     } else {
-      if (isLogin) {
+      if (isActiveUser) {
         errorText.classList.add('none');
         inputs.forEach(input => {
           input.classList.remove('errorBorder');
@@ -43,7 +46,7 @@ const checkUser = (item, form) => {
     }
   });
 };
-(0,_handleInput__WEBPACK_IMPORTED_MODULE_0__.checkMaxLengthInput)('#login', '.popup-admin__form-input', 'errorBorder', '4', '.errorText');
+(0,_handleInput__WEBPACK_IMPORTED_MODULE_0__.checkMaxLengthInput)('#login', '.popup-admin__form-input', 'errorBorder', '20', '.errorText');
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (checkUser);
 
 /***/ }),
@@ -149,15 +152,17 @@ const checkMaxLengthInput = (selectorInputLogin, selectorInputs, classNameError,
   const inputs = document.querySelectorAll(selectorInputs),
     inputLogin = document.querySelector(selectorInputLogin),
     errorText = document.querySelector(selectorErrorText);
-  inputLogin.addEventListener('input', () => {
-    if (inputLogin.value.length > maxLengthInput) {
-      inputs.forEach(input => input.classList.add(classNameError));
-      errorText.classList.remove('none');
-    } else {
-      inputs.forEach(input => input.classList.remove(classNameError));
-      errorText.classList.add('none');
-    }
-  });
+  if (inputLogin) {
+    inputLogin.addEventListener('input', () => {
+      if (inputLogin.value.length > maxLengthInput) {
+        inputs.forEach(input => input.classList.add(classNameError));
+        errorText.classList.remove('none');
+      } else {
+        inputs.forEach(input => input.classList.remove(classNameError));
+        errorText.classList.add('none');
+      }
+    });
+  }
 };
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (handleInput);
 
@@ -174,12 +179,18 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
+/* harmony import */ var _modules_localStorage__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../modules/localStorage */ "./src/js/modules/localStorage.js");
+
 const openModal = () => {
   const btn = document.querySelector('.calc_button'),
     modal = document.querySelector('.popup-admin');
   btn.addEventListener('click', () => {
-    modal.classList.remove('none');
-    document.body.style.overflow = 'hidden';
+    if ((0,_modules_localStorage__WEBPACK_IMPORTED_MODULE_0__.checkUserInLocalStorage)()) {
+      window.location.href = '/repair-cost.html';
+    } else {
+      modal.classList.remove('none');
+      document.body.style.overflow = 'hidden';
+    }
   });
 };
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (openModal);
@@ -210,6 +221,54 @@ const form = () => {
   }
 };
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (form);
+
+/***/ }),
+
+/***/ "./src/js/modules/localStorage.js":
+/*!****************************************!*\
+  !*** ./src/js/modules/localStorage.js ***!
+  \****************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   checkUserInLocalStorage: () => (/* binding */ checkUserInLocalStorage),
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+const addUserLocalStorage = (name, isActiveUser) => {
+  const usersLS = localStorage.getItem('users');
+  let users = [];
+  if (!usersLS) {
+    users.push({
+      name: name,
+      isActiveUser: isActiveUser
+    });
+  } else {
+    users = JSON.parse(usersLS);
+    const checkName = users.some(user => user.name === name);
+    if (!checkName) {
+      users.push({
+        name: name,
+        isActiveUser: isActiveUser
+      });
+    }
+  }
+  localStorage.setItem('users', JSON.stringify(users));
+};
+const checkUserInLocalStorage = () => {
+  const users = JSON.parse(localStorage.getItem('users'));
+  let isActiveUser = '';
+  if (users) {
+    isActiveUser = users.some(user => user.isActiveUser === true);
+    if (isActiveUser) {
+      return true;
+    } else {
+      return false;
+    }
+  }
+};
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (addUserLocalStorage);
+
 
 /***/ }),
 
