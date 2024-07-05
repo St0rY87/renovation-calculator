@@ -23,7 +23,6 @@ const changeData = async (url, id, value) => {
         id: id,
         value: value
     }
-
     const res = await fetch(url + id, {
         method: 'PATCH',
         headers: {
@@ -31,14 +30,12 @@ const changeData = async (url, id, value) => {
         },
         body: JSON.stringify(newData)
     });
-
     if (!res.ok) {
         throw new Error(`couldn't get data, status response is ${res.status}`)
     }
     else {
         return await res.json();
     }
-
 }
 
 

@@ -4,12 +4,10 @@ import tabs from "./modules/tabs";
 import showData from "./helpers/handleData";
 import openModal from "./modules/modal";
 import form from "./modules/form";
-// import backToMainPage from "./helpers/handleBtn";
 import repairCostPage from "./modules/repairCostPage";
 window.addEventListener('DOMContentLoaded', () => {
     tabs();
     openModal();
     form();
-    // backToMainPage();
     repairCostPage();
 })
