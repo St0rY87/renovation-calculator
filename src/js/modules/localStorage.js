@@ -1,16 +1,8 @@
 const addUserLocalStorage = (name, isActiveUser) => {
-    const usersLS = localStorage.getItem('users');
+    localStorage.clear();
     let users = [];
-    if (!usersLS) {
-        users.push({ name: name, isActiveUser: isActiveUser });
-    }
-    else {
-        users = JSON.parse(usersLS);
-        const checkName = users.some(user => user.name === name);
-        if (!checkName) {
-            users.push({ name: name, isActiveUser: isActiveUser });
-        }
-    }
+    users.push({ name: name, isActiveUser: isActiveUser });
+
     localStorage.setItem('users', JSON.stringify(users));
 }
 
@@ -26,8 +18,12 @@ const checkUserInLocalStorage = () => {
             return false
         }
     }
+}
 
+const exitActiveUSerLocalStorage = () => {
+    localStorage.clear();
 }
 
 export default addUserLocalStorage;
 export { checkUserInLocalStorage };
+export { exitActiveUSerLocalStorage };
