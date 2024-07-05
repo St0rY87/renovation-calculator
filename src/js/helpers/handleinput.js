@@ -1,3 +1,4 @@
+import { changeData } from "../services/services";
 const handleInput = () => {
     const inputs = document.querySelectorAll('.calculator__item-input');
 
@@ -38,10 +39,23 @@ const checkMaxLengthInput = (selectorInputLogin, selectorInputs, classNameError,
             }
         })
     }
+}
 
-
-
+const handleInputsRepairCost = () => {
+    const list = document.querySelector('.calculator__content_repair-cost');
+    list.addEventListener('change', (e) => {
+        const target = e.target;
+        if (target) {
+            const id = target.parentElement.parentElement.parentElement.id;
+            let value = target.value;
+            if (value < 0) {
+                value = 0;
+            }
+            changeData('http://localhost:3000/operations/', id, value)
+        }
+    })
 }
 
 export default handleInput;
 export { checkMaxLengthInput };
+export { handleInputsRepairCost };
