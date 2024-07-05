@@ -399,15 +399,26 @@
   justify-content: center;
 }
 
+.calculator__content_repair-cost {
+  justify-content: flex-start;
+  column-gap: 115px;
+}
 .calculator__wrapper_repair-cost {
   max-width: 1240px;
   padding: 50px;
 }
 .calculator__item_repair-cost {
-  width: 452px;
+  width: 510px;
 }
 .calculator__item-text_repair-cost {
   font-size: 16px;
+}
+.calculator__item-inner_repair-cost {
+  margin-left: unset;
+  padding-left: 60px;
+}
+.calculator__item-text_repair-cost {
+  grid-template-columns: 1.2fr 1fr;
 }
 .calculator__rooms-text_repair-cost {
   margin-top: 0;

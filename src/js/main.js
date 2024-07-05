@@ -1,16 +1,15 @@
 'use strict'
 
-// import handleInput from "./helpers/handleInput"
-// import { showDataRequireWorks } from "./helpers/handleData"
 import tabs from "./modules/tabs";
 import showData from "./helpers/handleData";
-import handleButton from "./helpers/modal";
-import openModal from "./helpers/modal";
+import openModal from "./modules/modal";
 import form from "./modules/form";
+// import backToMainPage from "./helpers/handleBtn";
+import repairCostPage from "./modules/repairCostPage";
 window.addEventListener('DOMContentLoaded', () => {
-
     tabs();
-    handleButton();
     openModal();
     form();
+    // backToMainPage();
+    repairCostPage();
 })

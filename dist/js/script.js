@@ -51,6 +51,30 @@ const checkUser = (item, form) => {
 
 /***/ }),
 
+/***/ "./src/js/helpers/handleBtn.js":
+/*!*************************************!*\
+  !*** ./src/js/helpers/handleBtn.js ***!
+  \*************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _modules_localStorage__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../modules/localStorage */ "./src/js/modules/localStorage.js");
+
+const backToMainPage = () => {
+  const btn = document.querySelector('.button_repair-cost');
+  if (btn) {
+    btn.addEventListener('click', () => {
+      (0,_modules_localStorage__WEBPACK_IMPORTED_MODULE_0__.exitActiveUSerLocalStorage)();
+    });
+  }
+};
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (backToMainPage);
+
+/***/ }),
+
 /***/ "./src/js/helpers/handleData.js":
 /*!**************************************!*\
   !*** ./src/js/helpers/handleData.js ***!
@@ -65,7 +89,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _handleInput__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./handleInput */ "./src/js/helpers/handleInput.js");
 
 
-const showData = (selectorListItems, selectorOverlay, ref, value, markupTemplate, ...variables) => {
+const showData = (selectorListItems, selectorOverlay, ref, classes, showValue, showPlaceholder, markupTemplate, ...variables) => {
   const listItems = document.querySelector(selectorListItems),
     overlay = document.querySelector(selectorOverlay);
   if (overlay) {
@@ -78,39 +102,49 @@ const showData = (selectorListItems, selectorOverlay, ref, value, markupTemplate
           selectedVariables[variable] = item[variable];
         });
         const li = document.createElement('LI');
-        li.classList.add('calculator__item');
+        li.classList.add(...classes);
         li.id = selectedVariables.id;
         li.innerHTML = markupTemplate(selectedVariables);
-        listItems.appendChild(li);
-        if (value || value === 0) {
-          document.querySelectorAll('.calculator__item-input').forEach(item => item.value = value);
+        if (showValue) {
+          li.querySelector('.calculator__item-input').value = item.value;
         }
+        if (showPlaceholder) {
+          li.querySelector('.calculator__item-input').placeholder = item.value;
+        }
+        listItems.appendChild(li);
       });
     }).catch(error => {
       console.error('Error fetching data');
     });
   }
 };
-showData('.calculator__content_square', '.overlay', 'http://localhost:3000/squares', 0, selectedVariable => `
+showData('.calculator__content_repair-cost', '.overlay.overlay_repair-cost', 'http://localhost:3000/operations', ['calculator__item', 'calculator__item_repair-cost'], null, true, selectedVariable => ` <label class="calculator__item-text calculator__item-text_repair-cost">
+            ${selectedVariable.name}
+                <div class="calculator__item-inner calculator__item-inner_repair-cost">
+                    <input type="text" class="calculator__item-input" placeholder="0.0">
+                    <span class="calculator__item-symb">${selectedVariable.unit}</span>
+                </div>
+        </label>`, 'id', 'value', 'unit', 'name');
+showData('.calculator__content_square', '.overlay.overlay_square', 'http://localhost:3000/squares', ['calculator__item'], true, null, selectedVariable => `
         <label class="calculator__item-text">
         <span>${selectedVariable.name}:</span>
             <div class="calculator__item-inner">
             <input class="calculator__item-input" type="text" placeholder="0.0">
         <span class="calculator__item-symb">м2</span>
             </div>
-        </label>`, 'id', 'name');
-showData('.calculator__content_require-works', '.overlay.overlay_require-works', 'http://localhost:3000/operations', null, selectedVariable => `
+        </label>`, 'id', 'name', 'value');
+showData('.calculator__content_require-works', '.overlay.overlay_require-works', 'http://localhost:3000/operations', ['calculator__item'], null, null, selectedVariable => `
                            <label class="calculator__item-text calculator__item-text_require-works">
                                             <p>${selectedVariable.name}
                                                 <span
                                                     class=" accent calculator__item-accent calculator__item-accent_require-works ">
-                                                    ${selectedVariable.count}/${selectedVariable.unit}</span>
+                                                    ${selectedVariable.value}/${selectedVariable.unit}</span>
                                             </p>
                                             <div class="calculator__item-inner  calculator__item-inner_require-works ">
                                                 <input type="checkbox" class="checkbox dismantling" name="dismantling">
                                             </div>
                                         </label>
-                                    `, 'id', 'name', 'count', 'unit');
+                                    `, 'id', 'name', 'value', 'unit');
 setTimeout(() => {
   (0,_handleInput__WEBPACK_IMPORTED_MODULE_1__["default"])();
 }, 2000);
@@ -169,34 +203,6 @@ const checkMaxLengthInput = (selectorInputLogin, selectorInputs, classNameError,
 
 /***/ }),
 
-/***/ "./src/js/helpers/modal.js":
-/*!*********************************!*\
-  !*** ./src/js/helpers/modal.js ***!
-  \*********************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
-/* harmony export */ });
-/* harmony import */ var _modules_localStorage__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../modules/localStorage */ "./src/js/modules/localStorage.js");
-
-const openModal = () => {
-  const btn = document.querySelector('.calc_button'),
-    modal = document.querySelector('.popup-admin');
-  btn.addEventListener('click', () => {
-    if ((0,_modules_localStorage__WEBPACK_IMPORTED_MODULE_0__.checkUserInLocalStorage)()) {
-      window.location.href = '/repair-cost.html';
-    } else {
-      modal.classList.remove('none');
-      document.body.style.overflow = 'hidden';
-    }
-  });
-};
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (openModal);
-
-/***/ }),
-
 /***/ "./src/js/modules/form.js":
 /*!********************************!*\
   !*** ./src/js/modules/form.js ***!
@@ -233,26 +239,16 @@ const form = () => {
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   checkUserInLocalStorage: () => (/* binding */ checkUserInLocalStorage),
-/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__),
+/* harmony export */   exitActiveUSerLocalStorage: () => (/* binding */ exitActiveUSerLocalStorage)
 /* harmony export */ });
 const addUserLocalStorage = (name, isActiveUser) => {
-  const usersLS = localStorage.getItem('users');
+  localStorage.clear();
   let users = [];
-  if (!usersLS) {
-    users.push({
-      name: name,
-      isActiveUser: isActiveUser
-    });
-  } else {
-    users = JSON.parse(usersLS);
-    const checkName = users.some(user => user.name === name);
-    if (!checkName) {
-      users.push({
-        name: name,
-        isActiveUser: isActiveUser
-      });
-    }
-  }
+  users.push({
+    name: name,
+    isActiveUser: isActiveUser
+  });
   localStorage.setItem('users', JSON.stringify(users));
 };
 const checkUserInLocalStorage = () => {
@@ -267,8 +263,59 @@ const checkUserInLocalStorage = () => {
     }
   }
 };
+const exitActiveUSerLocalStorage = () => {
+  localStorage.clear();
+};
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (addUserLocalStorage);
 
+
+
+/***/ }),
+
+/***/ "./src/js/modules/modal.js":
+/*!*********************************!*\
+  !*** ./src/js/modules/modal.js ***!
+  \*********************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _localStorage__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./localStorage */ "./src/js/modules/localStorage.js");
+
+const openModal = () => {
+  const btn = document.querySelector('.calc_button'),
+    modal = document.querySelector('.popup-admin');
+  btn.addEventListener('click', () => {
+    if ((0,_localStorage__WEBPACK_IMPORTED_MODULE_0__.checkUserInLocalStorage)()) {
+      window.location.href = '/repair-cost.html';
+    } else {
+      modal.classList.remove('none');
+      document.body.style.overflow = 'hidden';
+    }
+  });
+};
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (openModal);
+
+/***/ }),
+
+/***/ "./src/js/modules/repairCostPage.js":
+/*!******************************************!*\
+  !*** ./src/js/modules/repairCostPage.js ***!
+  \******************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _helpers_handleBtn__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../helpers/handleBtn */ "./src/js/helpers/handleBtn.js");
+
+const repairCostPage = () => {
+  (0,_helpers_handleBtn__WEBPACK_IMPORTED_MODULE_0__["default"])();
+};
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (repairCostPage);
 
 /***/ }),
 
@@ -416,22 +463,23 @@ var __webpack_exports__ = {};
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _modules_tabs__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./modules/tabs */ "./src/js/modules/tabs.js");
 /* harmony import */ var _helpers_handleData__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./helpers/handleData */ "./src/js/helpers/handleData.js");
-/* harmony import */ var _helpers_modal__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./helpers/modal */ "./src/js/helpers/modal.js");
+/* harmony import */ var _modules_modal__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./modules/modal */ "./src/js/modules/modal.js");
 /* harmony import */ var _modules_form__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./modules/form */ "./src/js/modules/form.js");
-
-
-// import handleInput from "./helpers/handleInput"
-// import { showDataRequireWorks } from "./helpers/handleData"
+/* harmony import */ var _modules_repairCostPage__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./modules/repairCostPage */ "./src/js/modules/repairCostPage.js");
 
 
 
 
+
+
+// import backToMainPage from "./helpers/handleBtn";
 
 window.addEventListener('DOMContentLoaded', () => {
   (0,_modules_tabs__WEBPACK_IMPORTED_MODULE_0__["default"])();
-  (0,_helpers_modal__WEBPACK_IMPORTED_MODULE_2__["default"])();
-  (0,_helpers_modal__WEBPACK_IMPORTED_MODULE_2__["default"])();
+  (0,_modules_modal__WEBPACK_IMPORTED_MODULE_2__["default"])();
   (0,_modules_form__WEBPACK_IMPORTED_MODULE_3__["default"])();
+  // backToMainPage();
+  (0,_modules_repairCostPage__WEBPACK_IMPORTED_MODULE_4__["default"])();
 });
 /******/ })()
 ;

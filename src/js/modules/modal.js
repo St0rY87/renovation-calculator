@@ -1,4 +1,4 @@
-import { checkUserInLocalStorage } from "../modules/localStorage";
+import { checkUserInLocalStorage } from "./localStorage";
 const openModal = () => {
     const btn = document.querySelector('.calc_button'),
         modal = document.querySelector('.popup-admin');
@@ -10,7 +10,6 @@ const openModal = () => {
             modal.classList.remove('none')
             document.body.style.overflow = 'hidden';
         }
-
     })
 }
 
