@@ -3,81 +3,97 @@
     {
       "name": "Гостинная",
       "value": 0,
+      "type": "common",
       "id": "living-room"
     },
     {
       "name": "Коридор №2",
       "value": 0,
+      "type": "common",
       "id": "corridor-2"
     },
     {
       "name": "Гостинная c кухней (студия)",
       "value": 0,
+      "type": "common",
       "id": "living-room_kitchen"
     },
     {
       "name": "Кухня",
       "value": 0,
+      "type": "common",
       "id": "kitchen"
     },
     {
       "name": "Спальня №1",
       "value": 0,
+      "type": "common",
       "id": "bedroom-1"
     },
     {
       "name": "Кладовая",
       "value": 0,
+      "type": "common",
       "id": "storeroom"
     },
     {
       "name": "Спальня №2",
       "value": 0,
+      "type": "common",
       "id": "bedroom-2"
     },
     {
       "name": "Балкон №1",
       "value": 0,
+      "type": "common",
       "id": "balcon-1"
     },
     {
       "name": "Детская №1",
       "value": 0,
+      "type": "common",
       "id": "child-room-1"
     },
     {
       "name": "Балкон №2",
       "value": 0,
+      "type": "common",
       "id": "balcon-2"
     },
     {
       "name": "Детская №2",
       "value": 0,
+      "type": "common",
       "id": "child-room-2"
     },
     {
       "name": "Лоджия",
       "value": 0,
+      "type": "common",
       "id": "Loggia"
     },
     {
       "name": "Кабинет",
       "value": 0,
+      "type": "common",
       "id": "cabinet"
     },
     {
       "name": "Санузел (ванная или душ)",
       "value": 0,
+      "type": "bathroom",
       "id": "bathroom_bath-shower"
     },
     {
       "name": "Коридор №1",
       "value": 0,
+      "type": "common",
       "id": "corridor-1"
     },
     {
       "name": "Санузел (туалет)",
       "value": 0,
+      "type": "bathroom",
       "id": "bathroom_toilet"
     }
   ],
