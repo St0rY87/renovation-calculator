@@ -86,78 +86,91 @@
       "name": "Демонтаж, зачистка старой отделки",
       "value": "20",
       "unit": "грн/м2",
+      "type": "surface",
       "id": "destruction"
     },
     {
       "name": "Откосы оконные",
       "value": "20",
       "unit": "грн/м2",
+      "type": "doorsWindows",
       "id": "windows"
     },
     {
       "name": "Штукатурка стен",
       "value": "20",
       "unit": "грн/м2",
+      "type": "walls",
       "id": "plaster-walls"
     },
     {
       "name": "Стяжка пола",
       "value": "20",
       "unit": "грн/м2",
+      "type": "surface",
       "id": "floor-screed"
     },
     {
       "name": "Шпаклевка стен",
       "value": "20",
       "unit": "грн/м2",
+      "type": "walls",
       "id": "putty"
     },
     {
       "name": "Укладка ламината",
       "value": "20",
       "unit": "грн/м2",
+      "type": "surface",
       "id": "laying-laminate"
     },
     {
       "name": "Поклейка обоев",
       "value": "20",
       "unit": "грн/м2",
+      "type": "walls",
       "id": "wallpapering"
     },
     {
       "name": "Установка плинтуса",
       "value": "20",
       "unit": "грн/м2",
+      "type": "plinth",
       "id": "plinth"
     },
     {
       "name": "Покраска стен",
       "value": "20",
       "unit": "грн/м2",
+      "type": "walls",
       "id": "painting-walls"
     },
     {
       "name": "Плитка санузлы, пол кухни, коридор",
       "value": "20",
       "unit": "грн/м2",
+      "type": "tile",
       "id": "tile"
     },
     {
       "name": "Натяжной / гипсокартонный потолок",
       "value": "20",
       "unit": "грн/м2",
+      "type": "surface",
       "id": "pension-ceiling"
     },
     {
       "name": "Разводка, установка сантехники",
       "value": "30000",
       "unit": "грн",
+      "type": "additional",
       "id": "installation-plumbing"
     },
     {
       "name": "Покраска потолка",
       "value": "20",
       "unit": "грн/м2",
+      "type": "surface",
       "id": "painting-ceiling"
     },
 
@@ -165,30 +178,35 @@
       "name": "Электрика: розетки, выключ., свет",
       "value": "40000",
       "unit": "грн",
+      "type": "additional",
       "id": "electrics"
     },
     {
       "name": "Шпаклевка потолка",
       "value": "20",
       "unit": "грн/м2",
+      "type": "surface",
       "id": "ceiling-putty"
     },
     {
       "name": "Вставка межкомнатных дверей ",
       "value": "10000",
       "unit": "грн/шт/25м2",
+      "type": "doorsWindows",
       "id": "interior-door-insertion "
     },
     {
       "name": "Плинтус потолочный",
       "value": "10",
       "unit": "грн/м",
+      "type": "plinth",
       "id": "ceiling-plinth"
     },
     {
       "name": "Вставка входной двери",
       "value": "10000",
       "unit": "грн/шт",
+      "type": "additional",
       "id": "ceiling-plinth"
     }
   ],
