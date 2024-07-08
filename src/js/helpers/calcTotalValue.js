@@ -5,7 +5,7 @@ const calcTotalValue = (storageData, dataAttribute, event) => {
         target = event.target;
     if (target) {
         const sum = inputs.reduce((currentSum, input) => {
-            const value = parseInt(input.value);
+            const value = Number(input.value);
             if (value < 0 || isNaN(value)) {
                 return currentSum //skip iteration
             }
