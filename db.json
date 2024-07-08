@@ -177,7 +177,7 @@
     },
     {
       "name": "Разводка, установка сантехники",
-      "value": "30000",
+      "value": "20",
       "unit": "грн",
       "type": "additional",
       "id": "installation-plumbing"
@@ -189,7 +189,6 @@
       "type": "surface",
       "id": "painting-ceiling"
     },
-
     {
       "name": "Электрика: розетки, выключ., свет",
       "value": "40000",
