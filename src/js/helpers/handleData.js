@@ -1,5 +1,7 @@
 import { getResource } from '../services/services';
 import handleInput from './handleInput';
+import { handleInputSquare } from './handleInput';
+import { getCeilingHeight } from './handleInput';
 
 const showData = (selectorListItems, selectorOverlay, ref, classes, showValue, showPlaceholder, markupTemplate, ...variables) => {
     const listItems = document.querySelector(selectorListItems),
@@ -61,12 +63,12 @@ showData('.calculator__content_square',
         <label class="calculator__item-text">
         <span>${selectedVariable.name}:</span>
             <div class="calculator__item-inner">
-            <input class="calculator__item-input" type="text" placeholder="0.0">
+            <input class="calculator__item-input" type="text" placeholder="0.0" data-type="${selectedVariable.type}" >
         <span class="calculator__item-symb">м2</span>
             </div>
         </label>`,
 
-    'id', 'name', 'value'
+    'id', 'name', 'value', 'type'
 )
 
 showData('.calculator__content_require-works',
@@ -83,14 +85,18 @@ showData('.calculator__content_require-works',
                                                     ${selectedVariable.value}/${selectedVariable.unit}</span>
                                             </p>
                                             <div class="calculator__item-inner  calculator__item-inner_require-works ">
-                                                <input type="checkbox" class="checkbox dismantling" name="dismantling">
+                                                <input type="checkbox" class="checkbox dismantling" name="dismantling" "data-type=${selectedVariable.type}">
                                             </div>
                                         </label>
                                     `,
 
-    'id', 'name', 'value', 'unit'
+    'id', 'name', 'value', 'unit', 'type'
 )
 
 
+const state = {
+};
 setTimeout(() => { handleInput() }, 2000);
+handleInputSquare(state);
+getCeilingHeight(state);
 export default showData;
