@@ -82,20 +82,25 @@ const handleInputsRepairCost = () => {
 
 const handleInputSquare = (state) => {
     const list = document.querySelector('.calculator__content_square');
+    if (list) {
+        list.addEventListener('input', (e) => {
+            calcTotalValue(state, '[data-type="common"]', e);
+            calcTotalValue(state, '[data-type="bathroom"]', e);
+            console.log(state)
+        })
+    }
 
-    list.addEventListener('input', (e) => {
-        calcTotalValue(state, '[data-type="common"]', e);
-        calcTotalValue(state, '[data-type="bathroom"]', e);
-        console.log(state)
-    })
 }
 
 const getCeilingHeight = (state) => {
     const parent = document.querySelector('.calculator__item-inner');
-    parent.addEventListener('input', e => {
-        calcTotalValue(state, '[data-type="ceiling"]', e);
-        console.log(state)
-    })
+    if (parent) {
+        parent.addEventListener('input', e => {
+            calcTotalValue(state, '[data-type="ceiling"]', e);
+            console.log(state)
+        })
+    }
+
 }
 
 export default handleInput;
