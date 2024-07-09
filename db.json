@@ -204,11 +204,11 @@
       "id": "ceiling-putty"
     },
     {
-      "name": "Вставка межкомнатных дверей ",
+      "name": "Вставка межкомнатных дверей",
       "value": "10000",
       "unit": "грн/шт/25м2",
       "type": "doorsWindows",
-      "id": "interior-door-insertion "
+      "id": "interior-door-insertion"
     },
     {
       "name": "Плинтус потолочный",
@@ -222,17 +222,19 @@
       "value": "10000",
       "unit": "грн/шт",
       "type": "additional",
-      "id": "ceiling-plinth"
+      "id": "door-insertion"
     }
   ],
   "users": [
     {
       "login": "dima",
-      "password": "123"
+      "password": "123",
+      "id": "c62c"
     },
     {
       "login": "alex",
-      "password": "123"
+      "password": "123",
+      "id": "9b92"
     }
   ]
 }
