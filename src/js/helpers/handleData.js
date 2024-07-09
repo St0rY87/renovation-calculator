@@ -85,7 +85,7 @@ showData('.calculator__content_require-works',
                                                     ${selectedVariable.value}/${selectedVariable.unit}</span>
                                             </p>
                                             <div class="calculator__item-inner  calculator__item-inner_require-works ">
-                                                <input type="checkbox" class="checkbox dismantling" name="dismantling" "data-type=${selectedVariable.type}">
+                                                <input type="checkbox" class="checkbox dismantling" name="dismantling" data-type=${selectedVariable.type}>
                                             </div>
                                         </label>
                                     `,
