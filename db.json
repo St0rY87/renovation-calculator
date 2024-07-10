@@ -109,7 +109,7 @@
       "name": "Откосы оконные",
       "value": "20",
       "unit": "грн/м2",
-      "type": "doorsWindows",
+      "type": "WindowSlopes",
       "id": "windows"
     },
     {
@@ -177,7 +177,7 @@
     },
     {
       "name": "Разводка, установка сантехники",
-      "value": "20",
+      "value": "30000",
       "unit": "грн",
       "type": "additional",
       "id": "installation-plumbing"
@@ -207,7 +207,7 @@
       "name": "Вставка межкомнатных дверей",
       "value": "10000",
       "unit": "грн/шт/25м2",
-      "type": "doorsWindows",
+      "type": "doorsRoom",
       "id": "interior-door-insertion"
     },
     {
