@@ -14,5 +14,4 @@ const calcTotalValue = (storageData, dataAttribute, event) => {
         storageData.squares[key] = sum;
     }
 }
-
 export default calcTotalValue;
