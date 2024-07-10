@@ -11,7 +11,7 @@ const calcTotalValue = (storageData, dataAttribute, event) => {
             }
             return currentSum + value;
         }, 0)
-        storageData[key] = sum;
+        storageData.squares[key] = sum;
     }
 }
 
