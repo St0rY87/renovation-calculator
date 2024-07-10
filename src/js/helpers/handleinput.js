@@ -109,82 +109,85 @@ const handleRequireWorksInputs = (state) => {
     const list = document.querySelector('.calculator__content_require-works');
     state.results = {
     };
-    list.addEventListener('change', (e) => {
-        const target = e.target;
+    if (list) {
+        list.addEventListener('change', (e) => {
+            const target = e.target;
 
-        const id = target.parentElement.parentElement.parentElement.id;
-        getResource(`http://localhost:3000/operations/${id}`)
-            .then(res => {
-                const { ceiling = 0, common = 0, bathroom = 0 } = state.squares;
-                const { name, value, type, id } = res;
-                const isChecked = target.checked;
-                const newArr = state.services.filter(item => item.id !== id);
-                state.services =
-                    [...newArr,
-                    {
-                        name,
-                        value,
-                        type,
-                        id,
-                        isChecked
+            const id = target.parentElement.parentElement.parentElement.id;
+            getResource(`http://localhost:3000/operations/${id}`)
+                .then(res => {
+                    const { ceiling = 0, common = 0, bathroom = 0 } = state.squares;
+                    const { name, value, type, id } = res;
+                    const isChecked = target.checked;
+                    const newArr = state.services.filter(item => item.id !== id);
+                    state.services =
+                        [...newArr,
+                        {
+                            name,
+                            value,
+                            type,
+                            id,
+                            isChecked
+                        }
+                        ]
+                    if (target) {
+
+                        switch (type) {
+                            case 'surface':
+                                const sumSurface = calcSelectedService(state, 'surface');
+                                state.results.surface = sumSurface * (common + bathroom);
+                                break;
+
+                            case 'walls':
+                                const sumWalls = calcSelectedService(state, 'walls');
+                                state.results.walls = parseInt(4 * Math.sqrt(common + bathroom) * ceiling * sumWalls);
+                                // console.log('formula walls')
+                                break;
+
+                            case 'plinth':
+                                // console.log('formula plinth')
+                                const sumPLinth = calcSelectedService(state, 'plinth');
+                                state.results.plinth = parseInt(4 * Math.sqrt(common + bathroom) * sumPLinth);
+                                break;
+
+                            case 'doorsRoom': //вставка входной двери
+                                // console.log('formula doorRooms')
+                                const sumAdd = calcSelectedService(state, 'doorsRoom');
+                                const doors = customRound((common + bathroom) / 25) * sumAdd;
+                                console.log(doors);
+                                state.results.doorsRoom = doors;
+                                break;
+
+                            case 'WindowSlopes':
+                                // console.log('formula WindowSlopes')
+                                const sumSlopes = calcSelectedService(state, 'WindowSlopes');
+                                const windows = customRound((common + bathroom) / 7.5) * sumSlopes;
+                                console.log(windows);
+                                state.results.WindowSlopes = windows;
+                                break;
+
+                            case 'tile':
+                                // console.log('formula tile')
+                                const sumTile = calcSelectedService(state, 'tile');
+                                state.results.tile = sumTile * bathroom;
+                                break;
+
+                            case 'additional':
+                                // console.log('Changed additional')
+                                const sumAdditional = calcSelectedService(state, 'additional');
+                                state.results.additional = sumAdditional;
+                                break;
+                        }
+                        const total = Object.values(state.results).reduce((totalSum, item) => {
+                            return totalSum + item
+                        }, 0)
+                        state.totalSum = total;
+                        console.log(state)
                     }
-                    ]
-                if (target) {
+                })
+        })
+    }
 
-                    switch (type) {
-                        case 'surface':
-                            const sumSurface = calcSelectedService(state, 'surface');
-                            state.results.surface = sumSurface * (common + bathroom);
-                            break;
-
-                        case 'walls':
-                            const sumWalls = calcSelectedService(state, 'walls');
-                            state.results.walls = parseInt(4 * Math.sqrt(common + bathroom) * ceiling * sumWalls);
-                            // console.log('formula walls')
-                            break;
-
-                        case 'plinth':
-                            // console.log('formula plinth')
-                            const sumPLinth = calcSelectedService(state, 'plinth');
-                            state.results.plinth = parseInt(4 * Math.sqrt(common + bathroom) * sumPLinth);
-                            break;
-
-                        case 'doorsRoom': //вставка входной двери
-                            // console.log('formula doorRooms')
-                            const sumAdd = calcSelectedService(state, 'doorsRoom');
-                            const doors = customRound((common + bathroom) / 25) * sumAdd;
-                            console.log(doors);
-                            state.results.doorsRoom = doors;
-                            break;
-
-                        case 'WindowSlopes':
-                            // console.log('formula WindowSlopes')
-                            const sumSlopes = calcSelectedService(state, 'WindowSlopes');
-                            const windows = customRound((common + bathroom) / 7.5) * sumSlopes;
-                            console.log(windows);
-                            state.results.WindowSlopes = windows;
-                            break;
-
-                        case 'tile':
-                            // console.log('formula tile')
-                            const sumTile = calcSelectedService(state, 'tile');
-                            state.results.tile = sumTile * bathroom;
-                            break;
-
-                        case 'additional':
-                            // console.log('Changed additional')
-                            const sumAdditional = calcSelectedService(state, 'additional');
-                            state.results.additional = sumAdditional;
-                            break;
-                    }
-                    const total = Object.values(state.results).reduce((totalSum, item) => {
-                        return totalSum + item
-                    }, 0)
-                    state.totalSum = total;
-                    console.log(state)
-                }
-            })
-    })
 }
 
 const checkService = (state, type = []) => {
