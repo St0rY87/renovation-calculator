@@ -1,7 +1,9 @@
 import { getResource } from '../services/services';
-import handleInput from './handleInput';
+import handleInput, { handleRequireWorksInputs } from './handleInput';
 import { handleInputSquare } from './handleInput';
 import { getCeilingHeight } from './handleInput';
+import { handleRequireWorks } from './handleInput';
+import { checkService } from './handleInput';
 
 const showData = (selectorListItems, selectorOverlay, ref, classes, showValue, showPlaceholder, markupTemplate, ...variables) => {
     const listItems = document.querySelector(selectorListItems),
@@ -95,8 +97,12 @@ showData('.calculator__content_require-works',
 
 
 const state = {
+    squares: {},
+    services: []
 };
-setTimeout(() => { handleInput() }, 2000);
+setTimeout(() => { handleInput(state) }, 2000);
 handleInputSquare(state);
 getCeilingHeight(state);
+handleRequireWorksInputs(state);
+
 export default showData;
