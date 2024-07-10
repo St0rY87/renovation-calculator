@@ -99,6 +99,7 @@ const getCeilingHeight = (state) => {
     if (parent) {
         parent.addEventListener('input', e => {
             calcTotalValue(state, '[data-type="ceiling"]', e);
+            checkService(state, ['surface', 'walls', 'plinth', 'doorsRoom', 'WindowSlopes', 'tile', 'additional'])
             console.log(state)
         })
     }
