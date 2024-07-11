@@ -5,45 +5,41 @@ import calcSelectedService from "./calcSelectedService";
 import customRound from "./customRound";
 import showCurrency from "./showCurrency";
 
+const handleInput = (e) => {
+    const target = e.target;
+    if (target && target.tagName === 'INPUT') {
+        let value = target.value;
+        value = value.replace(/[^0-9-.]/g, '');
 
-const handleInput = (state) => {
-    const inputs = document.querySelectorAll('.calculator__item-input');
+        if (value.length > 6) {
+            value = value.slice(0, 6);
+        }
 
-    inputs.forEach(input => {
-        input.addEventListener('input', (e) => {
-            let value = e.target.value;
-            value = value.replace(/[^0-9-.]/g, '');
+        if ((value.match(/\./g) || []).length > 1) {
+            value = value.slice(0, -1);
+        }
 
-            if (value.length > 6) {
-                value = value.slice(0, 6);
+        if (value.includes('.')) {
+            const parts = value.split('.');
+            if (parts[1].length > 1) {
+                parts[1] = parts[1].slice(0, 1);
             }
+            value = parts.join('.');
+        }
 
-            if ((value.match(/\./g) || []).length > 1) {
-                value = value.slice(0, -1);
-            }
+        if (value.length > 1 && value[0] === '0' && value[1] !== '.') {
+            value = value.slice(1);
+        }
 
-            if (value.includes('.')) {
-                const parts = value.split('.');
-                if (parts[1].length > 1) {
-                    parts[1] = parts[1].slice(0, 1);
-                }
-                value = parts.join('.');
-            }
-
-            if (value.length > 1 && value[0] === '0' && value[1] !== '.') {
-                value = value.slice(1);
-            }
-
-            if (value.indexOf('-') !== -1) {
-                const parts = value.split('-');
-                value = '-' + parts.join('').replace(/-/g, '');
-                e.target.classList.add('error-input');
-            } else {
-                e.target.classList.remove('error-input');
-            }
-            e.target.value = value;
-        })
-    })
+        if (value.indexOf('-') !== -1) {
+            const parts = value.split('-');
+            value = '-' + parts.join('').replace(/-/g, '');
+            target.classList.add('error-input');
+        } else {
+            target.classList.remove('error-input');
+        }
+        target.value = value;
+    }
 }
 
 const checkMaxLengthInput = (selectorInputLogin, selectorInputs, classNameError, maxLengthInput, selectorErrorText) => {
@@ -67,6 +63,9 @@ const checkMaxLengthInput = (selectorInputLogin, selectorInputs, classNameError,
 const handleInputsRepairCost = () => {
     const list = document.querySelector('.calculator__content_repair-cost');
     if (list) {
+        list.addEventListener('input', (e) => {
+            handleInput(e);
+        })
         list.addEventListener('change', (e) => {
             const target = e.target;
             console.log(target);
@@ -86,6 +85,7 @@ const handleInputSquare = (state) => {
     const list = document.querySelector('.calculator__content_square');
     if (list) {
         list.addEventListener('input', (e) => {
+            handleInput(e);
             calcTotalValue(state, '[data-type="common"]', e);
             calcTotalValue(state, '[data-type="bathroom"]', e);
             checkService(state, ['surface', 'walls', 'plinth', 'doorsRoom', 'WindowSlopes', 'tile', 'additional'])
