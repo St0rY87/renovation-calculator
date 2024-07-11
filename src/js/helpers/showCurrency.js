@@ -10,8 +10,10 @@ const displayTotalCost = (state, selectorElem) => {
 const displayCurrency = (state, selectorElem) => {
     const elem = document.querySelector(selectorElem);
     if (elem) {
-        const value = (state.totalSum / state.exchangeRate).toFixed(1);
-        elem.textContent = value
+        if (state.totalSum && state.exchangeRate) {
+            const value = (state.totalSum / state.exchangeRate).toFixed(1);
+            elem.textContent = value
+        }
     }
 }
 

@@ -69,7 +69,6 @@ const handleInputsRepairCost = () => {
         })
         list.addEventListener('change', (e) => {
             const target = e.target;
-            console.log(target);
             if (target) {
                 const id = target.parentElement.parentElement.parentElement.id;
                 let value = target.value;
@@ -247,7 +246,6 @@ const checkService = (state, type = []) => {
         return totalSum + item
     }, 0)
     state.totalSum = total;
-    console.log(state.totalSum)
 }
 
 
