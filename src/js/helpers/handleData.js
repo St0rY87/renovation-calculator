@@ -100,7 +100,6 @@ const state = {
     squares: {},
     services: []
 };
-setTimeout(() => { handleInput(state) }, 2000);
 handleInputSquare(state);
 getCeilingHeight(state);
 handleRequireWorksInputs(state);
