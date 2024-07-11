@@ -4,7 +4,7 @@ import { handleInputSquare } from './handleInput';
 import { getCeilingHeight } from './handleInput';
 import { handleRequireWorks } from './handleInput';
 import { checkService } from './handleInput';
-
+import getExchangeRate from './getExchangeRate';
 const showData = (selectorListItems, selectorOverlay, ref, classes, showValue, showPlaceholder, markupTemplate, ...variables) => {
     const listItems = document.querySelector(selectorListItems),
         overlay = document.querySelector(selectorOverlay);
@@ -97,11 +97,17 @@ showData('.calculator__content_require-works',
 
 
 const state = {
+    exchangeRate: 0,
     squares: {},
     services: []
 };
 handleInputSquare(state);
 getCeilingHeight(state);
 handleRequireWorksInputs(state);
+getExchangeRate(state, 'https://api.privatbank.ua/p24api/pubinfo?json&exchange&coursid=5');
+
+const timer = setInterval(() => {
+    getExchangeRate(state, 'https://api.privatbank.ua/p24api/pubinfo?json&exchange&coursid=5')
+}, 60000)
 
 export default showData;
