@@ -3,6 +3,7 @@ import { changeData } from "../services/services";
 import { getResource } from "../services/services";
 import calcSelectedService from "./calcSelectedService";
 import customRound from "./customRound";
+import showCurrency from "./showCurrency";
 
 
 const handleInput = (state) => {
@@ -88,7 +89,7 @@ const handleInputSquare = (state) => {
             calcTotalValue(state, '[data-type="common"]', e);
             calcTotalValue(state, '[data-type="bathroom"]', e);
             checkService(state, ['surface', 'walls', 'plinth', 'doorsRoom', 'WindowSlopes', 'tile', 'additional'])
-
+            showCurrency(state, '.calculator__amount');
             console.log(state)
         })
     }
@@ -100,6 +101,7 @@ const getCeilingHeight = (state) => {
         parent.addEventListener('input', e => {
             calcTotalValue(state, '[data-type="ceiling"]', e);
             checkService(state, ['surface', 'walls', 'plinth', 'doorsRoom', 'WindowSlopes', 'tile', 'additional'])
+            showCurrency(state, '.calculator__amount');
             console.log(state)
         })
     }
@@ -183,6 +185,7 @@ const handleRequireWorksInputs = (state) => {
                         }, 0)
                         state.totalSum = total;
                         console.log(state)
+                        showCurrency(state, '.calculator__amount');
                     }
                 })
         })
