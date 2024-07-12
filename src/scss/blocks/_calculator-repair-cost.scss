@@ -36,6 +36,14 @@
     align-items: flex-end;
     max-width: 100%;
   }
+  &__item-inner_repair-cost {
+    font-size: 14px;
+    font-weight: 700;
+  }
+  &__item-inner_repair-cost .calculator__item-input {
+    font-size: 14px;
+    font-weight: 700;
+  }
 }
 
 @media (max-width: 1100px) {
