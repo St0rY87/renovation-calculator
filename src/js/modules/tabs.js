@@ -5,18 +5,18 @@ const tabs = () => {
         tabsParent = document.querySelector('.calculator__wrapper-tabs');
 
 
-    const hideTabContent = () => {
-        tabs.forEach(tab => {
-            tab.classList.remove('calculator__tab_active');
-        });
-
-        tabsContent.forEach(tabContent => {
-            tabContent.classList.remove('fadeIn');
-            tabContent.classList.add('none');
-        });
-
-    }
     try {
+        const hideTabContent = () => {
+            tabs.forEach(tab => {
+                tab.classList.remove('calculator__tab_active');
+            });
+
+            tabsContent.forEach(tabContent => {
+                tabContent.classList.remove('fadeIn');
+                tabContent.classList.add('none');
+            });
+        }
+
         const showTabContent = (i = 0) => {
             tabsContent[i].classList.remove('none');
             tabsContent[i].classList.add('fade-in');
@@ -35,16 +35,9 @@ const tabs = () => {
                     }
                 });
             }
-
         })
     } catch (error) {
     }
-
-
-
-
-
-
 }
 
 export default tabs;
