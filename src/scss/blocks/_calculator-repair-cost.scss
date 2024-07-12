@@ -68,9 +68,6 @@
 
 @media (max-width: 577px) {
   .calculator {
-    &__wrapper_repair-cost {
-      // padding: 50px 0 50px 0;
-    }
     &__item_repair-cost {
       width: 95%;
     }
@@ -83,8 +80,5 @@
     &__item-inner_repair-cost {
       padding-left: clamp(0.9375rem, -4.1209rem + 25.2918vi, 5rem);
     }
-    // &__item-inner_repair-cost {
-    //   padding-left: 15px;
-    // }
   }
 }
