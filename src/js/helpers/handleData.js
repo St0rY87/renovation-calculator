@@ -6,37 +6,38 @@ import { handleRequireWorks } from './handleInput';
 import { checkService } from './handleInput';
 import getExchangeRate from './getExchangeRate';
 const showData = (selectorListItems, selectorOverlay, ref, classes, showValue, showPlaceholder, markupTemplate, ...variables) => {
-    const listItems = document.querySelector(selectorListItems),
-        overlay = document.querySelector(selectorOverlay);
-    if (overlay) {
-        overlay.classList.remove('none');
-        getResource(ref)
-            .then(res => {
-                overlay.classList.add('none');
-                res.forEach(item => {
+    try {
+        const listItems = document.querySelector(selectorListItems),
+            overlay = document.querySelector(selectorOverlay);
+        if (overlay) {
+            overlay.classList.remove('none');
+            getResource(ref)
+                .then(res => {
+                    overlay.classList.add('none');
+                    res.forEach(item => {
 
-                    const selectedVariables = {};
-                    variables.forEach(variable => {
-                        selectedVariables[variable] = item[variable];
-                    })
-                    const li = document.createElement('LI');
-                    li.classList.add(...classes);
-                    li.id = selectedVariables.id;
-                    li.innerHTML = markupTemplate(selectedVariables);
-                    if (showValue) {
-                        li.querySelector('.calculator__item-input').value = item.value;
-                    }
-                    if (showPlaceholder) {
-                        li.querySelector('.calculator__item-input').placeholder = item.value;
-                    }
-                    listItems.appendChild(li);
-                });
-            })
-            .catch(error => {
-                console.error('Error fetching data');
-            })
-    }
-
+                        const selectedVariables = {};
+                        variables.forEach(variable => {
+                            selectedVariables[variable] = item[variable];
+                        })
+                        const li = document.createElement('LI');
+                        li.classList.add(...classes);
+                        li.id = selectedVariables.id;
+                        li.innerHTML = markupTemplate(selectedVariables);
+                        if (showValue) {
+                            li.querySelector('.calculator__item-input').value = item.value;
+                        }
+                        if (showPlaceholder) {
+                            li.querySelector('.calculator__item-input').placeholder = item.value;
+                        }
+                        listItems.appendChild(li);
+                    });
+                })
+                .catch(error => {
+                    console.error('Error fetching data');
+                })
+        }
+    } catch (error) { }
 }
 showData('.calculator__content_repair-cost',
     '.overlay.overlay_repair-cost',
