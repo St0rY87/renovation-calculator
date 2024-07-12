@@ -233,10 +233,10 @@
         gap: 10px;
       }
       &-text {
-        font-size: var(--fluid-14-24);
+        font-size: var(--fluid-20-24);
       }
       &-inner {
-        font-size: var(--fluid-14-24);
+        font-size: var(--fluid-20-24);
       }
       &-amount {
         font-size: var(--fluid-20-24);
@@ -271,25 +271,28 @@
     padding-inline: 0;
   }
   .calculator {
+    &__content_square {
+      row-gap: 20px;
+    }
     &__tab {
-      font-size: 14px;
+      // font-size: 14px;
       padding-inline: 12px;
       padding-block: 12px;
     }
     &__notes {
-      font-size: 14px;
+      // font-size: 14px;
     }
     &__list {
       padding-left: 20px;
     }
     &__list-item {
       margin-top: 10px;
-      font-size: 14px;
+      // font-size: 14px;
     }
     &__item {
-      width: 350px;
+      width: 95%;
       &-text {
-        font-size: 14px;
+        // font-size: 14px;
       }
     }
     &__rooms-text {
@@ -297,6 +300,9 @@
     }
     &__wrapper {
       padding-inline: 10px;
+    }
+    &__footer {
+      margin-top: 30px;
     }
   }
 }
