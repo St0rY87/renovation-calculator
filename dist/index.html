@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Калькулятор для ремонта</title>
+    <meta name="title" content="Калькулятор для ремонта">
+    <meta name="description" content="Здесь вы сможете посчитать стоимость ремонта">
+
+
+    <!-- Favicon  -->
+    <link rel="apple-touch-icon" sizes="57x57" href="icons/favicon/apple-icon-57x57.png">
+    <link rel="apple-touch-icon" sizes="60x60" href="icons/favicon/apple-icon-60x60.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="icons/favicon/apple-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="76x76" href="icons/favicon/apple-icon-76x76.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="icons/favicon/apple-icon-114x114.png">
+    <link rel="apple-touch-icon" sizes="120x120" href="icons/favicon/apple-icon-120x120.png">
+    <link rel="apple-touch-icon" sizes="144x144" href="icons/favicon/apple-icon-144x144.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="icons/favicon/apple-icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="icons/favicon/apple-icon-180x180.png">
+
+    <link rel="icon" type="image/png" sizes="32x32" href="icons/favicon/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="96x96" href="icons/favicon/favicon-96x96.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="icons/favicon/favicon-16x16.png">
+    <link rel="icon" type="image/png" sizes="192x192" href="icons/favicon/android-icon-192x192.png">
+    <link rel="icon" type="image/png" sizes="192x192" href="icons/favicon/favicon-96x96.png">
+    <link rel="manifest" href="icons/favicon/manifest.json">
+    <meta name="msapplication-TileColor" content="#ffffff">
+    <meta name="msapplication-TileImage" content="icons/favicon/ms-icon-144x144.png">
+    <meta name="theme-color" content="#ffffff">
+
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+
+<body>
+    <main>
+        <section class="calc">
+            <div class="container">
+
+                <h1 class="title calc__title"><span class="calc__accent-word">Калькулятор</span> стоимости ремонта</h1>
+                <div class="calc__wrapper">
+                    <div class="calc__inner">
+                        <div class="calculator">
+                            <div class="calculator__wrapper-tabs">
+                                <button class="calculator__tab calculator__tab-square calculator__tab-active">Площадь
+                                    помещения</button>
+                                <button class="calculator__tab calculator__tab-works">Необходимые работы</button>
+                            </div>
+
+                            <div class="calculator__wrapper">
+                                <div class="calculator__header">
+                                    <div class="calculator__item">
+                                        <label class="calculator__item-text">Высота потолка в квартире:
+                                            <div class="calculator__item-inner">
+                                                <input class="calculator__item-input" placeholder="0.0">
+                                                <span class="calculator__item-symb">&nbsp;&nbsp;м</span>
+                                            </div>
+                                        </label>
+                                        <p class="calculator__rooms-text">Площадь отдельных комнат:</p>
+                                    </div>
+                                </div>
+                                <ul class="calculator__content calculator__content_square">
+
+                                </ul>
+
+                                <div class="calculator__footer">
+                                    <p class="calculator__notes">Примечания: </p>
+                                    <ul class="calculator__list">
+                                        <li class="calculator__list-item">устанавливайте площадь помещений там, где
+                                            необходим
+                                            ремонт</li>
+                                        <li class="calculator__list-item">если есть дополнительные комнаты, например,
+                                            Спальня
+                                            №3, то добавляйте их площадь к существующим в калькуляторе</li>
+                                    </ul>
+                                </div>
+                                <div class="overlay overlay_square">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="3em" height="3em"
+                                        viewBox="0 0 24 24">
+                                        <g>
+                                            <circle cx="12" cy="2.5" r="1.5" fill="currentColor" opacity="0.14" />
+                                            <circle cx="16.75" cy="3.77" r="1.5" fill="currentColor" opacity="0.29" />
+                                            <circle cx="20.23" cy="7.25" r="1.5" fill="currentColor" opacity="0.43" />
+                                            <circle cx="21.5" cy="12" r="1.5" fill="currentColor" opacity="0.57" />
+                                            <circle cx="20.23" cy="16.75" r="1.5" fill="currentColor" opacity="0.71" />
+                                            <circle cx="16.75" cy="20.23" r="1.5" fill="currentColor" opacity="0.86" />
+                                            <circle cx="12" cy="21.5" r="1.5" fill="currentColor" />
+                                            <animateTransform attributeName="transform" calcMode="discrete" dur="0.75s"
+                                                repeatCount="indefinite" type="rotate"
+                                                values="0 12 12;30 12 12;60 12 12;90 12 12;120 12 12;150 12 12;180 12 12;210 12 12;240 12 12;270 12 12;300 12 12;330 12 12;360 12 12" />
+                                        </g>
+                                    </svg>
+                                </div>
+                            </div>
+                            <div class="calculator__wrapper calculator__wrapper-require-works none">
+                                <div class="calculator__header">
+                                    <div class="calculator__item">
+
+                                        <p class="calculator__rooms-text">Площадь отдельных комнат:</p>
+                                    </div>
+                                </div>
+                                <ul class="calculator__content calculator__content_require-works">
+
+                                </ul>
+
+                                <div class="calculator__footer">
+                                    <p class="calculator__notes  accent">Примечания: </p>
+                                    <ul class="calculator__list">
+                                        <li class="calculator__list-item">устанавливайте галочку напротив услуги, если
+                                            она необходима</li>
+                                        <li class="calculator__list-item">рядом с услугой отображена <span
+                                                class="accent ">
+                                                средняя</span> стоимость
+                                            на текущий момент. Сюда входит работа и материал. Это может быть стоимость
+                                            за квадратный или погонный метр, усредненная стоимость всей сантехники для
+                                            ремонта и тд. Итоговый вариант может отличаться от выбранных вами
+                                            материалов, но калькулятор даст вам понимание о стоимости ремонта среднего
+                                            качества.</li>
+                                    </ul>
+                                </div>
+                                <div class="overlay overlay_require-works">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="3em" height="3em"
+                                        viewBox="0 0 24 24">
+                                        <g>
+                                            <circle cx="12" cy="2.5" r="1.5" fill="currentColor" opacity="0.14" />
+                                            <circle cx="16.75" cy="3.77" r="1.5" fill="currentColor" opacity="0.29" />
+                                            <circle cx="20.23" cy="7.25" r="1.5" fill="currentColor" opacity="0.43" />
+                                            <circle cx="21.5" cy="12" r="1.5" fill="currentColor" opacity="0.57" />
+                                            <circle cx="20.23" cy="16.75" r="1.5" fill="currentColor" opacity="0.71" />
+                                            <circle cx="16.75" cy="20.23" r="1.5" fill="currentColor" opacity="0.86" />
+                                            <circle cx="12" cy="21.5" r="1.5" fill="currentColor" />
+                                            <animateTransform attributeName="transform" calcMode="discrete" dur="0.75s"
+                                                repeatCount="indefinite" type="rotate"
+                                                values="0 12 12;30 12 12;60 12 12;90 12 12;120 12 12;150 12 12;180 12 12;210 12 12;240 12 12;270 12 12;300 12 12;330 12 12;360 12 12" />
+                                        </g>
+                                    </svg>
+                                </div>
+                            </div>
+
+                        </div>
+                        <button class="button calc_button">
+                            Войти как администратор
+                        </button>
+                    </div>
+
+                    <div class="calculator__sum">
+                        <div class="calculator__sum-info">
+                            <div class="calculator__sum-inner">
+                                <span class="calculator__amount calculator__amount-first">0</span>
+                                <span class="calculator__currency calculator__currency-first">грн</span>
+                            </div>
+                            <p class="calculator__sum-text">
+                                Примерная
+                                общая стоимость работ
+                            </p>
+                        </div>
+                        <div class="calculator__sum-info">
+                            <div class="calculator__sum-inner">
+                                <span class="calculator__amount calculator__amount-first">0</span>
+                                <span class="calculator__currency calculator__currency-first">$</span>
+                            </div>
+                            <p class="calculator__sum-text">
+                                Сумма в долларах США
+                                по текущему курсу
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Modals -->
+    <div class="popup-admin none">
+        <div class="container">
+            <h1 class="title calc__title popup-admin__title"><span class="calc__accent-word">Калькулятор</span>
+                стоимости ремонта</h1>
+            <p class="popup-admin__text">Авторизация администратора</p>
+            <form action="#" class="popup-admin__form">
+                <div class="popup-admin__form-item">
+                    <label for="login" class="popup-admin__label">Логин</label>
+                    <input class="popup-admin__form-input" type="text" id="login" name="login">
+                </div>
+                <div class="popup-admin__form-item">
+                    <label for="password" class="popup-admin__label">Пароль</label>
+                    <input class="popup-admin__form-input" type="password" id="password" name="password">
+                </div>
+                <div class="popup-admin__form-inner">
+                    <p class="errorText none">Неверный логин или пароль</p>
+                    <button class="popup-admin__form-btn">Войти</button>
+                </div>
+            </form>
+        </div>
+    </div>
+    <script src="js/script.js"></script>
+</body>
+
+</html>

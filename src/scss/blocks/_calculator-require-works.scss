@@ -1,0 +1,71 @@
+.calculator {
+  &__wrapper-require-works {
+    min-height: 700px;
+    display: flex;
+    flex-direction: column;
+    padding-top: 45px;
+  }
+  &__content_require-works {
+    column-gap: 20px;
+    row-gap: 0px;
+  }
+  &__item_require-works {
+    width: 436px;
+  }
+  &__item-text_require-works {
+    font-size: 16px;
+    grid-template-columns: 10fr 1fr;
+    cursor: pointer;
+    padding: 8px;
+    align-items: center;
+    p {
+      line-height: 1;
+    }
+  }
+  &__item-inner_require-works {
+    padding-top: 5px;
+  }
+
+  &__item-accent_require-works {
+    font-size: 14px;
+  }
+}
+
+.checkbox {
+  appearance: none;
+  border: 1px #fff solid;
+  width: 15px;
+  height: 15px;
+  position: relative;
+  cursor: pointer;
+}
+
+.checkbox:checked:before {
+  content: "";
+  position: absolute;
+  width: 13px;
+  height: 15px;
+  background-image: url(../img/check.png);
+  background-repeat: no-repeat;
+  background-position: center center;
+  cursor: pointer;
+}
+
+.checkbox:focus {
+  outline: none;
+  border-radius: 1px;
+  box-shadow: 0 0 0 1px var(--color-accent);
+}
+@media (max-width: 577px) {
+  .calculator__content_require-works {
+    .calculator__item {
+      width: 95%;
+    }
+  }
+}
+
+@media (max-width: 460px) {
+  .calculator__item_require-works {
+    width: 350px;
+  }
+}
