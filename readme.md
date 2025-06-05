@@ -27,8 +27,6 @@ To get the app up and running, follow these steps:
 
 ### `Redirect has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header` ?
 
-### 🛠 Temporary Development Workaround:
-
 ⚠️ To disable web security in Chrome for local development:
 
 ```bash
