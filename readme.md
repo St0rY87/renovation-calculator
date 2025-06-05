@@ -1,19 +1,42 @@
-## To run the app, please follow the steps below:
+## 🚀 Running the App
 
-### 1. Install one of the latest Node LTS versions from Node.js 
-### 2. Install gulp-cli by typing the following command into the command line: 'npm install --global gulp-cli'
-### 3. In the command line, type: 'npm i'
-### 4. In the command line, type: 'npx json-server db.json'
-### 5. In the command line, type: 'gulp'
+To get the app up and running, follow these steps:
 
+1. **Install Node.js (LTS version)**  
+   Download and install one of the latest LTS versions from the official [Node.js website](https://nodejs.org/).
 
+2. **Install Gulp CLI globally**  
+   Open a terminal or command prompt and run:
+   ```bash
+   npm install --global gulp-cli
+   ```
+3. **Install project dependencies**
+   ```bash
+   npm install
+   ```
+4. **Start the JSON server**
+   ```bash
+   npx json-server db.json
+   ```
+5. **Start the Gulp development server**
+   ```bash
+   gulp
+   ```
 
-## How to solve 'Redirect has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header'?
+## ⚠️ How to Solve:
 
-#### Start Chrome from the Console:
+### `Redirect has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header` ?
 
-### chrome.exe --user-data-dir="C:/Chrome dev session" --disable-web-security
+### 🛠 Temporary Development Workaround:
 
-#### For example:
+⚠️ To disable web security in Chrome for local development:
 
-### "C:\Users\username\AppData\Local\Google\Chrome\Application\chrome.exe" --user-data-dir="C:/Chrome dev session" --disable-web-security
+```bash
+chrome.exe --user-data-dir="C:/Chrome dev session" --disable-web-security
+```
+
+🔍 **Example (Windows default Chrome path):**
+
+```bash
+"C:\Users\username\AppData\Local\Google\Chrome\Application\chrome.exe" --user-data-dir="C:/Chrome dev session" --disable-web-security
+```
